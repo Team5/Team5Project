@@ -62,7 +62,14 @@ class Admin extends CI_Controller {
             redirect('home');
         }
     }
-    
+
+
+    /*-----------------------------------------------------------------------
+     *
+     * Pages for listing Information
+     *
+     *-----------------------------------------------------------------------*/
+
     /**
      * users
      *
@@ -83,7 +90,13 @@ class Admin extends CI_Controller {
             redirect('home');
         }
     }
-    
+
+
+    /**
+     * courses
+     *
+     * Provides list of all courses
+     */
     function courses()
     {
         if($this->logged_in && $this->email==ADMIN_EMAIL)
@@ -101,7 +114,10 @@ class Admin extends CI_Controller {
             redirect('home');
         }
     }
-    
+
+    /**
+     * Provides list of all rooms
+     */
     function rooms()
     {
         if($this->logged_in && $this->email==ADMIN_EMAIL)
@@ -117,4 +133,59 @@ class Admin extends CI_Controller {
             redirect('home');
         }
     }
+
+    /*-----------------------------------------------------------------------
+     *
+     * Pages for changing information
+     *
+     *-----------------------------------------------------------------------*/
+
+    /**
+     * user
+     *
+     * User options, add, delete, update
+     */
+    function user()
+    {
+        if($this->logged_in && $this->email==ADMIN_EMAIL)
+        {
+            if($this->input->post('submit') == 'fire')
+            {
+                $tasks = array('add', 'update', 'delete');
+                $types = array('user', 'provider');
+                $areas = array('general', 'science', 'languages');
+                $user = array(
+                    'name'     => $this->input->post('name'),
+                    'email'    => $this->input->post('email'),
+                    'password' => md5($this->input->post('pass')),
+                    'type'     => $types[$this->input->post('type')],
+                    'area'     => $areas[$this->input->post('area')]
+                );
+                if($this->input->post('uid') != NULL)
+                {
+                    $user['uid'] = $this->input->post('uid');
+                }
+                $task = $tasks[$this->input->post('task')];
+
+                if($task == 'add')
+                {
+                    $this->users_model->add($user);
+                }
+                else if($task == 'update')
+                {
+                    $this->users_model->update($user['uid'], $user);
+                }
+                else if($task == 'delete')
+                {
+                    $this->users_model->delete($user['uid']);
+                }
+            }
+        }
+        else
+        {
+            redirect('settings/admin');
+        }
+    }
+
+
 }
