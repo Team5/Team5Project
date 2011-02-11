@@ -14,7 +14,7 @@
     echo form_close();
     ?>
 </div>
-<script language="javascript "type="application/x-javascript">
+<script language="javascript " type="application/x-javascript">
 $('#submit').click(function(){
     
     var name = $('#name').val();

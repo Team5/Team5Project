@@ -101,8 +101,6 @@ class Courses_model extends CI_Model {
      * get_enrolled
      * 
      * Retrieves list of User IDs of users in course
-     *
-     * @todo Should we have $count and $offset here or handle it in controller
      * 
      * @access public
      * @param integer $cid Course ID of course

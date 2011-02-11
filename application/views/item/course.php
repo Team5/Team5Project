@@ -1,5 +1,5 @@
 <table>
-    <t r>
+    <tr>
         <th>ShortName</th>
         <th>Area</th>
         <th>Description</th>

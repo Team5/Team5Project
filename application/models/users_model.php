@@ -30,11 +30,13 @@ class Users_model extends CI_Model {
      * @return array
      *
      */
-    function get($uid, $select="*") {
+    function get($uid, $select="*")
+    {
         $this->db->select($select);
         $this->db->where('uid', $uid);
         $q = $this->db->get('users');
-        if($q->num_rows() > 0) {
+        if($q->num_rows() > 0)
+        {
             $user_array = $q->result();
             return $user_array[0];
         }
@@ -115,17 +117,23 @@ class Users_model extends CI_Model {
      * @param string $dob   Date of birth
      * @return boolean      Whether or not it was accepted into the database
      */
-    function add($name, $email, $pass, $type, $area, $dob)
+    function add($name, $email='', $pass='', $type='', $area='', $dob='')
     {
-        $user_info = array(
-            'name'          => $name,
-            'email'         => $email,
-            'type'          => $type,
-            'area'          => $area,
-            'date_of_birth' => $dob,
-            
-            'password' => md5($pass)
-        );
+        if(is_array($name))
+        {
+            $user_info = $name ;
+        }
+        else
+        {
+            $user_info = array(
+                'name'          => $name,
+                'email'         => $email,
+                'type'          => $type,
+                'area'          => $area,
+                'date_of_birth' => $dob,
+                'password'      => md5($pass)
+            );
+        }
         return $this->db->insert('users', $user_info);
     }
     
@@ -139,8 +147,15 @@ class Users_model extends CI_Model {
      */
     function update($uid, $user_info)
     {
-        $this->db->where('uid', $uid);
-        return $this->db->update('users', $user_info);
+        if(is_array($user_info))
+        {
+            $this->db->where('uid', $uid);
+            return $this->db->update('users', $user_info);
+        }
+        else
+        {
+            return FALSE;
+        }
     }
     
     /**
