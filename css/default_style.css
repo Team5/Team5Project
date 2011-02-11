@@ -1,0 +1,232 @@
+/**
+ * General Setup (Not reset)
+ */
+
+body {
+    background  : #b6b6b6;
+    margin      : 0;
+    padding     : 0;
+    font-family : arial;
+}
+
+h2 {
+    display : block;
+    font-size : xx-large;
+}
+
+/**
+ * header stuff
+ */
+
+#title img{
+    display : inline;
+    position : relative;
+    height  : 100px;
+    width   : 300px;
+}
+
+#title h2, p {
+    display : inline;
+}
+
+#header {
+    background : #e3e3e3;
+    border-bottom  : 1px solid white;
+    position   : absolute;
+    top        : 0;
+    height     : 8em;
+    width      : 100%;
+    padding    : 0.7em 0.7em 0.7em 2em;
+}
+
+/**
+ * login_form
+ */
+
+#login_popup a:visited {
+    color : blue;
+}
+
+#login_form, #login_popup {
+    position   : fixed;
+    border     : 1px solid white;
+    padding    : 0.2em;
+    -moz-border-radius : 1em;
+    -webkit-border-radius : 1em;
+    
+    right      : 1em;
+    top        : 1em;
+    
+    background : #eeeeee;
+}
+
+#login_form #email,#pass {
+    display : inline ;
+}
+
+input[type=text], input[type=password] {
+    display : block;
+    border  : 5px;
+    -moz-border-radius : 0.5em;
+    -webkit-border-radius : 0.5em;
+    border-radius : 0.5em;
+    padding  : 0.5em;
+}
+
+input[type=submit], form a {
+    border          : none;
+    margin-right    : 1em;
+    padding         : 0.3em;
+    text-decoration : none;
+    font-size       : 1em;
+    -moz-border-radius : 5px;
+    -webkit-border-radius : 5px;
+    -moz-box-shadow: 0 1px 0 white;
+    -webkit-box-shadow: 0 1px 0 white;
+    border-radius   : 5px;
+    box-shadow      : 0 1px 0 white;
+    background      : #348075;
+    color           : white;
+}
+
+input[type=submit]:hover, form a:hover {
+    background : #285068;
+    cursor     : pointer;
+}
+
+.error {
+    color: #393939;
+    font-size: 15px;
+}
+
+#login_form fieldset {
+    width         : 300px;
+    margin        : auto;
+    margin-bottom : 2em;
+    display       : block;
+}
+
+/**
+ * top_menu stuff
+ */
+
+#selected { font-weight : bold; }
+
+#top_menu {
+    position : fixed;
+    top      : 8em;
+}
+
+#top_menu a,a:visited {
+    text-decoration : none;
+    color: white;
+}
+
+#top_menu li:hover {
+    background : #285068;
+    cursor     : pointer;
+}
+
+#top_menu li {
+    text-decoration : none;
+    display         : inline;
+    border          : 3em;
+    margin-right    : 0.3em;
+    padding         : 0.3em;
+    font-size       : 1em;
+    -moz-border-radius : 5px;
+    -webkit-border-radius : 5px;
+    -moz-box-shadow: 0 1px 0 white;
+    -webkit-box-shadow: 0 1px 0 white;
+    border-radius   : 5px;
+    box-shadow      : 0 1px 0 white;
+    background      : #348075;
+    color           : white;
+}
+
+/**
+ * side_info stuff
+ */
+#side_info {
+    display: block;
+    position: fixed;
+    top : 10em;
+    bottom :2em;
+    right:0;
+    background: #e3e3e3;
+}
+
+/**
+ * content stuff
+ */
+
+#content {
+    display  : block;
+    position : fixed;
+    top      : 10em;
+    bottom   : 2em;
+    left     : 1em;
+    right    : 10em;
+    width    : auto;
+    height   : auto;
+    
+    overflow : auto;
+}
+
+/**
+ * Tables
+ */
+#table {
+    margin-bottom : 10px;
+}
+
+td {
+    border-right : 1px solid #aaaaaa;
+    padding      : 1em;
+}
+
+td:last-child {
+    border-right : none;
+}
+
+tr:hover {
+    background : #999999;
+}
+
+.odd_row {
+    background : #e3e3e3;
+}
+
+th {
+    text-align    : left;
+    padding-left  : 1em;
+    background    : #cac9c9;
+    border-bottom : 1px solid white;
+    border-right  : 1px solid #aaaaaa;
+}
+
+#pagination a, #pagination strong {
+    background      : #e3e3e3;
+    padding         : 4px 7px;
+    text-decoration : none;
+    border          : 1px solid #cac9c9;
+    color           : #292929;
+    font-size       : 13px;
+}
+
+#pagination strong, #pagination a:hover {
+    font-weight : normal;
+    background  : #cac9c9;
+}
+
+/**
+ * footer stuff
+ */
+#footer {
+    background : #e3e3e3;
+    border-top  : 1px solid white;
+    position   : absolute;
+    bottom     : 0;
+    width      : 100%;
+    padding    : 0.2em 0.2em 0.2em 0.2em;
+}
