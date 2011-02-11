@@ -31,13 +31,16 @@ class Admin extends CI_Controller {
         parent::__construct();
         $this->email = $this->session->userdata('email');
         $this->name = $this->session->userdata('name');
+        $this->type  = $this->session->userdata('type');
         $this->logged_in = $this->session->userdata('logged_in');
         
         // Setup $header_data for the view header.php that 'template.php' calls
-        $this->template_data['header_data']  = array(
+        $this->template_data  = array(
             'page_title' => 'ADMIN',
             'choice'     => 'Home',
+            'type'       => $this->type,
             'name'       => $this->name,
+            'email'      => $this->email,
             'logged_in'  => $this->logged_in
         );
     }
@@ -140,6 +143,12 @@ class Admin extends CI_Controller {
      *
      *-----------------------------------------------------------------------*/
 
+    /*-----------------------------------------------------------------------
+     *
+     * Pages for changing information
+     *
+     *-----------------------------------------------------------------------*/
+
     /**
      * user
      *
@@ -169,15 +178,15 @@ class Admin extends CI_Controller {
 
                 if($task == 'add')
                 {
-                    $this->users_model->add($user);
+                    echo $this->users_model->add($user);
                 }
                 else if($task == 'update')
                 {
-                    $this->users_model->update($user['uid'], $user);
+                    echo $this->users_model->update($user['uid'], $user);
                 }
                 else if($task == 'delete')
                 {
-                    $this->users_model->delete($user['uid']);
+                    echo $this->users_model->delete($user['uid']);
                 }
             }
         }
@@ -187,5 +196,50 @@ class Admin extends CI_Controller {
         }
     }
 
+    /**
+     * course
+     *
+     * User options, add, delete, update
+     */
+    function course()
+    {
+        if($this->logged_in && $this->email==ADMIN_EMAIL)
+        {
+            if($this->input->post('submit') == 'fire')
+            {
+                $tasks = array('add', 'update', 'delete');
+                $areas = array('general', 'science', 'languages');
+                $course = array(
+                    'title'       => $this->input->post('title'),
+                    'short_title'  => $this->input->post('short_title'),
+                    'provider_id' => $this->input->post('provider_id'),
+                    'area'        => $areas[$this->input->post('area')],
+                    'description' => $this->input->post('description')
+                );
+                print_r($course);
+                if($this->input->post('course_id') != NULL)
+                {
+                    $course['course_id'] = $this->input->post('course_id');
+                }
+                $task = $tasks[$this->input->post('task')];
 
+                if($task == 'add')
+                {
+                    echo $this->courses_model->add($course) ? 'SUCCESS': 'FAIL';
+                }
+                else if($task == 'update')
+                {
+                    echo $this->courses_model->update($course['course_id'], $course);
+                }
+                else if($task == 'delete')
+                {
+                    echo $this->courses_model->delete($course['course_id']);
+                }
+            }
+        }
+        else
+        {
+            redirect('settings/admin');
+        }
+    }
 }

@@ -18,6 +18,15 @@ form, fieldset {
     max-width : 700px;
 }
 
+.text_align{
+	text-align : center;
+}
+
+#mainContainer{
+	width : 930px;
+	margin : 0 auto 0 auto;
+	text-align : left;
+}
 /**
  * header stuff
  */
@@ -39,7 +48,7 @@ form, fieldset {
     position   : absolute;
     top        : 0;
     height     : 8em;
-    width      : 100%;
+	width      : 930px;
     padding    : 0.7em 0.7em 0.7em 2em;
 }
 
@@ -52,14 +61,11 @@ form, fieldset {
 }
 
 #login_form, #login_popup {
-    position   : fixed;
     border     : 1px solid white;
     padding    : 0.2em;
     -moz-border-radius : 1em;
     -webkit-border-radius : 1em;
     
-    right      : 1em;
-    top        : 1em;
     background : #eeeeee;
 }
 
@@ -233,3 +239,4 @@ th {
     width      : 100%;
     padding    : 0.2em 0.2em 0.2em 0.2em;
 }
+

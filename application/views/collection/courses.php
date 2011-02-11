@@ -10,7 +10,6 @@
         <thead>
         <tr>
             <th>Selected</th>
-            <th>Course_id</th>
             <th>ShortName</th>
             <th>Name</th>
             <th>Area</th>
@@ -25,7 +24,6 @@
         <? if(count($courses_in_area)>0): $odd=0; foreach($courses_in_area as $course):?>
         <tr <?=($odd^=1)?' class="odd_row"':''?>>
             <td><?=form_checkbox("select[{$course->area},{$course->course_id}]", "selected{$course->area}", FALSE)?></td>
-            <th><?=$course->course_id?></th>
             <td><?=anchor('courses/by_id/'.$course->course_id, $course->short_title)?></td>
             <td><?=$course->title?></td>
             <td><?=anchor('courses/by_area/'.$course->area, $course->area)?></td>
@@ -36,7 +34,7 @@
             <td><?=$course->enrolled_max?></td>
         </tr>
         <? endforeach; else:?>
-           <td colspan="all">Nothing here</td>
+           <tr><td colspan="all">Nothing here</td></tr>
         <? endif;?>
         </tbody>
     </table>

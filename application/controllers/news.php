@@ -31,13 +31,16 @@ class News extends CI_Controller {
         parent::__construct();
         $this->email = $this->session->userdata('email');
         $this->name = $this->session->userdata('name');
+        $this->type  = $this->session->userdata('type');
         $this->logged_in = $this->session->userdata('logged_in');
         
         // Setup $header_data for the view header.php that 'template.php' calls
-        $this->template_data['header_data'] = array(
+        $this->template_data = array(
             'page_title' => 'News',
             'choice'     => 'News',
+            'type'       => $this->type,
             'name'       => $this->name,
+            'email'      => $this->email,
             'logged_in'  => $this->logged_in
         );
     }
@@ -91,22 +94,21 @@ class News extends CI_Controller {
         $config['per_page']   = ROWS_PER_PAGE;
         
         $this->pagination->initialize($config);
-        
+
         $data['news_articles'] = $this->news_model->get_by_user($uid, $config['per_page'], $this->uri->segment(4)) ;
         if(count($data['news_articles'])>0)
         {
             $provider_id = $data['news_articles'][0]->provider_id;
             $name = $this->users_model->get($provider_id, 'name');
-            $name = $name[0]->name;
+            $name = $name->name;
             foreach($data['news_articles'] as $article)
             {
                 $article->author = $name;
             }
         }
-       
-        $this->template_data['header_data']['page_title'] = 'News by '.$name;
-        $this->template_data['content']       = 'collection/articles';
-        $this->template_data['content_data']  = $data;
+        $this->template_data['page_title']   = 'News by '.$name;
+        $this->template_data['content']      = 'collection/articles';
+        $this->template_data['content_data'] = $data;
 
         $this->load->view('template', $this->template_data);
     }

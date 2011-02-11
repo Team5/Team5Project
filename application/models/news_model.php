@@ -77,7 +77,7 @@ class News_model extends CI_Model {
      */
     function get_by_user($uid, $count=ROWS_PER_PAGE, $offset=0)
     {
-        $this->db->where('provider_id',$uid);
+        $this->db->where('provider_id', $uid);
         $q = $this->db->get('news', $count, $offset) ;
         if($q->num_rows() > 0)
         {

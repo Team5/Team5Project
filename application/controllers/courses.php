@@ -31,13 +31,16 @@ class Courses extends CI_Controller {
         parent::__construct();
         $this->email = $this->session->userdata('email');
         $this->name = $this->session->userdata('name');
+        $this->type  = $this->session->userdata('type');
         $this->logged_in = $this->session->userdata('logged_in');
         
         // Setup $header_data for the view header.php that 'template.php' calls
-        $this->template_data['header_data']  = array(
+        $this->template_data  = array(
             'page_title' => 'Courses',
             'choice'     => 'Courses',
+            'type'       => $this->type,
             'name'       => $this->name,
+            'email'      => $this->email,
             'logged_in'  => $this->logged_in
         );
     }
@@ -82,7 +85,7 @@ class Courses extends CI_Controller {
         
         $data['courses'][$area] = $this->courses_model->get_by_area($area);
         
-        $this->template_data['header_data']['page_title'] = 'Courses in area: '.$area;
+        $this->template_data['page_title'] = 'Courses in area: '.$area;
         $this->template_data['content']       = 'collection/courses';
         $this->template_data['content_data']  = $data;
 
@@ -104,7 +107,7 @@ class Courses extends CI_Controller {
         // If something of use was returned set up header_data and content_data
         if($course != NULL)
         {
-            $this->template_data['header_data']['page_title'] = 'Course: '.$course->title;
+            $this->template_data['page_title'] = 'Course: '.$course->title;
             $this->template_data['content_data']['course'] = $course;
         }
         $this->template_data['content'] = 'item/course';

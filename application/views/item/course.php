@@ -1,3 +1,4 @@
+<? if(isset($course)): ?>
 <table>
     <tr>
         <th>ShortName</th>
@@ -7,7 +8,7 @@
         <th>EndDate</th>
         <th>Price</th>
     </tr>
-<? if(isset($course)): ?>
+
     <h2><?=$course->title?></h2>
     <tr class="odd_row">
         <td><?=$course->title?></td>
@@ -17,12 +18,10 @@
         <td><?=$course->end_date?></td>
         <td id="price"></td>
     </tr>
-<? else:?>
-    <tr>
-        <td colspan="6">No course here</td>
-    </tr>
-<? endif;?>
 </table>
+<? else:?>
+<h2>No course with that id</h2>
+<? endif;?>
 
 <script type="text/javascript">
     var td = document.getElementById('price');

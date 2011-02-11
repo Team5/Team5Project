@@ -31,13 +31,16 @@ class Provider extends CI_Controller {
         parent::__construct();
         $this->email = $this->session->userdata('email');
         $this->name = $this->session->userdata('name');
+        $this->type  = $this->session->userdata('type');
         $this->logged_in = $this->session->userdata('logged_in');
         
         // Setup $header_data for the view header.php that 'template.php' calls
-        $this->template_data['header_data']  = array(
+        $this->template_data  = array(
             'page_title' => 'Courses',
             'choice'     => 'Courses',
+            'type'       => $this->type,
             'name'       => $this->name,
+            'email'      => $this->email,
             'logged_in'  => $this->logged_in
         );
     }

@@ -31,14 +31,17 @@ class Login extends CI_Controller {
         parent::__construct();
         $this->email = $this->session->userdata('email');
         $this->name = $this->session->userdata('name');
+        $this->type  = $this->session->userdata('type');
         $this->logged_in = $this->session->userdata('logged_in');
         
         // Setup $header_data for the view header.php that 'template.php' calls
-        $this->template_data['header_data']   = array(
-                'page_title' => 'Welcome',
-                'choice'     => 'Home',
-                'logged_in'  => $this->logged_in,
-                'name'       => $this->name
+        $this->template_data   = array(
+            'page_title' => 'Welcome',
+            'choice'     => 'Home',
+            'type'       => $this->type,
+            'email'      => $this->email,
+            'logged_in'  => $this->logged_in,
+            'name'       => $this->name
         );
     }
     
@@ -66,6 +69,7 @@ class Login extends CI_Controller {
         {
             $data = array(
                 'email' => $user[0]->email,
+                'type'  => $user[0]->type,
                 'name'  => $user[0]->name,
                 'logged_in' => TRUE
             );
@@ -82,7 +86,7 @@ class Login extends CI_Controller {
      */
     function register()
     {
-        $this->template_data['header_data'] = array('page_title' => 'Welcome', 'choice' => 'Home');
+        $this->template_data = array('page_title' => 'Welcome', 'choice' => 'Home');
         $this->template_data['content'] = 'form/register';
         $this->load->view('template', $this->template_data);
     }
