@@ -109,7 +109,7 @@ class Users_model extends CI_Model {
      * Add new user to users table
      *
      * @access public
-     * @param string $name  User Name
+     * @param string|array $name  User Name OR array containing details
      * @param string $email Email address
      * @param string $pass  Password
      * @param string $type  Type of user 'admin', 'provider', 'user'
@@ -117,16 +117,17 @@ class Users_model extends CI_Model {
      * @param string $dob   Date of birth
      * @return boolean      Whether or not it was accepted into the database
      */
-    function add($name, $email='', $pass='', $type='', $area='', $dob='')
+    function add($fname, $sname='', $email='', $pass='', $type='', $area='', $dob='')
     {
-        if(is_array($name))
+        if(is_array($fname))
         {
             $user_info = $name ;
         }
         else
         {
             $user_info = array(
-                'name'          => $name,
+                'fname'         => $fname,
+                'sname'         => $sname,
                 'email'         => $email,
                 'type'          => $type,
                 'area'          => $area,
@@ -134,6 +135,7 @@ class Users_model extends CI_Model {
                 'password'      => md5($pass)
             );
         }
+        print_r($user_info);
         return $this->db->insert('users', $user_info);
     }
     

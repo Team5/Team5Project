@@ -70,7 +70,7 @@ class Login extends CI_Controller {
             $data = array(
                 'email' => $user[0]->email,
                 'type'  => $user[0]->type,
-                'name'  => $user[0]->name,
+                'name'  => $user[0]->fname . ' ' . $user[0]->sname,
                 'logged_in' => TRUE
             );
             // adds email, name and logged_in to the user cookie
@@ -100,11 +100,25 @@ class Login extends CI_Controller {
     {
         $this->load->library('form_validation');
         // Set rules for different form settings
-        $this->form_validation->set_rules('name', 'Full Name',
+        $this->form_validation->set_rules('fname', 'First Name',
+                                          'trim|required');
+        $this->form_validation->set_rules('sname', 'Surname',
                                           'trim|required');
         $this->form_validation->set_rules('email', 'Email Address',
                                           'trim|required|valid_email');
-        
+
+        $this->form_validation->set_rules('dob_day', 'Day of Birth',
+                                          'trim|required|integer');
+        $this->form_validation->set_rules('dob_month', 'Month of Birth',
+                                          'trim|required|integer');
+        $this->form_validation->set_rules('dob_year', 'Year of Birth',
+                                          'trim|required|integer');
+
+        $this->form_validation->set_rules('type', "User Type",
+                                          'trim|required|integer');
+        $this->form_validation->set_rules('area', "User Area",
+                                          'trim|required|integer');
+
         $this->form_validation->set_rules('pass', 'Password',
                                           'alpha_numeric|trim|required|min_length[6]|max_length[32]');
         $this->form_validation->set_rules('pass2', 'Password Confirmation',
@@ -112,15 +126,32 @@ class Login extends CI_Controller {
         
         // If all settings are valid AND (then)the user has been added go home
         // $this->input->post() sanitises(injection and XSS filtering) _POST[] data
-        if($this->form_validation->run() &&
-           $this->users_model->add($this->input->post('name'),
-                                   $this->input->post('email'),
-                                   $this->input->post('pass'),
-                                   $this->input->post('type'),
-                                   $this->input->post('area'),
-                                   $this->input->post('dob')))
+        if($this->form_validation->run())
         {
-            redirect('home');
+            $date = getDate();
+
+            $dob = ($date['year']-17) - $this->input->post('dob_year');
+            $dob .= '-'.($this->input->post('dob_month')+1);
+            $dob .= '-'.($this->input->post('dob_day')+1);
+
+            $types = array('user', 'provider');
+            $areas = array('general','science','languages');
+
+            if($this->users_model->add($this->input->post('fname'),
+                                       $this->input->post('sname'),
+                                       $this->input->post('email'),
+                                       $this->input->post('pass'),
+                                       $types[$this->input->post('type')],
+                                       $areas[$this->input->post('area')],
+                                       $dob))
+            {
+                redirect('home');
+            }
+            else
+            {
+                $this->template_data['content'] = 'form/register';
+                $this->load->view('template', $this->template_data);
+            }
         }
         else
         {

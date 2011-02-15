@@ -356,5 +356,15 @@ $config['rewrite_short_tags'] = FALSE;
 $config['proxy_ips'] = '';
 
 
+/*
+|--------------------------------------------------------------------------
+| Default timezone
+|--------------------------------------------------------------------------
+|
+|
+*/
+date_default_timezone_set('UTC');
+
+
 /* End of file config.php */
 /* Location: ./application/config/config.php */
