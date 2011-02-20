@@ -1,6 +1,5 @@
 <h2>Courses</h2>
-<?=form_open()?>
-<button name="submit" id="submit" value="submit" type="button" >Apply to selected Courses</button>
+<?=form_open('courses/select')?>
 
 <? foreach($courses as $area => $courses_in_area):?>
     <h2 onclick="$('#<?=$area?>').slideToggle();"><?=$area?></h2>
@@ -41,7 +40,10 @@
     </div>
     
 <? endforeach;?>
+
+    <button name="submit" id="submit" value="submit" type="button" >Apply to selected Courses</button>
 <?=form_close()?>
+
 <script type="text/javascript">
 $(document).ready(function(){
     $('.course_box').hide()

@@ -7,7 +7,8 @@
             <th>type</th>
             <th>area</th>
             <th>email</th>
-            <th>name</th>
+            <th>fname</th>
+            <th>sname</th>
             <th>date_of_birth</th>
             <th>applied</th>
             <th>enrolled</th>
@@ -19,7 +20,8 @@
             <td><?=$user->type?></td>
             <td><?=$user->area?></td>
             <td><?=$user->email?></td>
-            <td><?=$user->name?></td>
+            <td><?=$user->fname?></td>
+            <td><?=$user->sname?></td>
             <td><?=$user->date_of_birth?></td>
             <td><?=$user->applied?></td>
             <td><?=$user->enrolled?></td> 

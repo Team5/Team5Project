@@ -62,11 +62,12 @@
         <ul>
         <?php
         $menuitems = array(
-            'Home' => '/home',
+            'Home'    => '/home',
             'Courses' => '/courses',
-            'News' => '/news',
-            'About' => '/home/about',
-            'Help' => '/home/help',
+            'Rooms'   => '/rooms',
+            'News'    => '/news',
+            'About'   => '/home/about',
+            'Help'    => '/home/help',
             'Contact' => '/contact'
         );
         ?>

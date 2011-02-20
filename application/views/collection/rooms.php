@@ -1,5 +1,5 @@
-<h2>Users</h2>
-<div id="users">
+<h2>Rooms</h2>
+<div id="rooms">
     <table>
         <tr>
             <th>selected</th>
@@ -9,7 +9,7 @@
         </tr>
         <? if(count($rooms)>0): $odd=0; foreach($rooms as $room):?>
         <tr<?=($odd^=1)?' class="odd_row"':''?>>
-            <td><input name="selected_tbl[]" value="users" id="checkbox_tbl_1" type="checkbox"/></td>
+            <td><input name="selected_tbl[]" value="rooms" id="checkbox_tbl_1" type="checkbox"/></td>
             <td><?=$room->room_id?></td>
             <td><?=$room->title?></td>
             <td><?=$room->facilities?></td>

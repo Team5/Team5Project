@@ -56,7 +56,7 @@ class Users_model extends CI_Model {
      * @return array
      *
      */
-    function get_all($uid, $count=ROWS_PER_PAGE, $offset=0)
+    function get_all($count=ROWS_PER_PAGE, $offset=0)
     {
         $q = $this->db->get('users', $count, $offset);
         if($q->num_rows() > 0)
