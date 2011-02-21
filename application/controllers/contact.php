@@ -1,34 +1,14 @@
 <?php
 
-class Contact extends CI_Controller {
-    /**
-     * Constructor
-     */
-    function __construct()
-    {
-        // Call CI_Controller::__construct() so $this is still a CI_Controller
-        parent::__construct();
-        $this->email = $this->session->userdata('email');
-        $this->name  = $this->session->userdata('name');
-        $this->type  = $this->session->userdata('type');
-        $this->logged_in = $this->session->userdata('logged_in');
-        
-        // Setup $header_data for the view header.php that 'template.php' calls
-        $this->template_data = array(
-            'page_title' => 'Contact Us',
-            'choice'     => 'Contact',
-            'type'       => $this->type,
-            'name'       => $this->name,
-            'email'      => $this->email,
-            'logged_in'  => $this->logged_in
-        );
-    }
-    
+class Contact extends SC_Controller {
+
     /**
      *
      */
     function index()
     {
+        $this->template_data['page_title'] = 'Contact Us';
+        $this->template_data['choice']     = 'Contact';
         $this->template_data['content'] = 'form/contact';
         $this->load->view('template', $this->template_data);
     }
@@ -43,10 +23,13 @@ class Contact extends CI_Controller {
         
         if($is_ajax)
         {
+            
             echo "Thank You! {$name}, {$email}, {$message}";
         }
         else
         {
+            $this->template_data['page_title'] = 'Contact Us';
+            $this->template_data['choice']     = 'Contact';
             $this->template_data['content'] = 'form/contact';
             $this->load->view('template', $this->template_data);
         }

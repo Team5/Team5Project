@@ -20,30 +20,8 @@
  * @subpackage	Controllers
  * @author	Team 5
  */
-class News extends CI_Controller {
 
-    /**
-     * Constructor
-     */
-    function __construct()
-    {
-        // Call CI_Controller::__construct() so $this is still a CI_Controller
-        parent::__construct();
-        $this->email = $this->session->userdata('email');
-        $this->name = $this->session->userdata('name');
-        $this->type  = $this->session->userdata('type');
-        $this->logged_in = $this->session->userdata('logged_in');
-        
-        // Setup $header_data for the view header.php that 'template.php' calls
-        $this->template_data = array(
-            'page_title' => 'News',
-            'choice'     => 'News',
-            'type'       => $this->type,
-            'name'       => $this->name,
-            'email'      => $this->email,
-            'logged_in'  => $this->logged_in
-        );
-    }
+class News extends SC_Controller {
 
     /**
      * index
@@ -54,6 +32,9 @@ class News extends CI_Controller {
      */
     function index()
     {
+        $this->template_data['page_title'] = 'News';
+        $this->template_data['choice']     = 'News';
+
         $this->load->library('pagination');
         $config['base_url']   = base_url().'/news/index';
         $config['total_rows'] = $this->db->get('news')->num_rows();
@@ -65,8 +46,8 @@ class News extends CI_Controller {
         foreach($data['news_articles'] as $article)
         {
             $provider_id = $article->provider_id;
-            $name = $this->users_model->get($provider_id,'name');
-            $article->author = $name->name;
+            $name = $this->users_model->get($provider_id, 'fname,sname');
+            $article->author = $name->sname . ', '. $name->fname;;
         }
 
         $this->template_data['content']      = 'collection/articles';
@@ -99,14 +80,15 @@ class News extends CI_Controller {
         if(count($data['news_articles'])>0)
         {
             $provider_id = $data['news_articles'][0]->provider_id;
-            $name = $this->users_model->get($provider_id, 'name');
-            $name = $name->name;
+            $name = $this->users_model->get($provider_id, 'fname,sname');
+            $name = $name->sname . ', '. $name->fname;
             foreach($data['news_articles'] as $article)
             {
                 $article->author = $name;
             }
         }
         $this->template_data['page_title']   = 'News by '.$name;
+        $this->template_data['choice']       = 'News';
         $this->template_data['content']      = 'collection/articles';
         $this->template_data['content_data'] = $data;
 

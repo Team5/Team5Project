@@ -20,31 +20,9 @@
  * @subpackage	Controllers
  * @author	Team 5
  */
-class Login extends CI_Controller {
 
-    /**
-     * Construct
-     */
-    function __construct()
-    {
-        // Call CI_Controller::__construct() so $this is still a CI_Controller
-        parent::__construct();
-        $this->email = $this->session->userdata('email');
-        $this->name = $this->session->userdata('name');
-        $this->type  = $this->session->userdata('type');
-        $this->logged_in = $this->session->userdata('logged_in');
-        
-        // Setup $header_data for the view header.php that 'template.php' calls
-        $this->template_data   = array(
-            'page_title' => 'Welcome',
-            'choice'     => 'Home',
-            'type'       => $this->type,
-            'email'      => $this->email,
-            'logged_in'  => $this->logged_in,
-            'name'       => $this->name
-        );
-    }
-    
+class Login extends SC_Controller {
+
     /**
      * Controller for login
      *
@@ -86,7 +64,8 @@ class Login extends CI_Controller {
      */
     function register()
     {
-        $this->template_data = array('page_title' => 'Welcome', 'choice' => 'Home');
+        $this->template_data['page_title'] = 'Welcome';
+        $this->template_data['choice']     = 'Home';
         $this->template_data['content'] = 'form/register';
         $this->load->view('template', $this->template_data);
     }
@@ -149,6 +128,8 @@ class Login extends CI_Controller {
             }
             else
             {
+                $this->template_data['page_title'] = 'Welcome';
+                $this->template_data['choice']     = 'Home';
                 $this->template_data['content'] = 'form/register';
                 $this->load->view('template', $this->template_data);
             }
@@ -157,6 +138,8 @@ class Login extends CI_Controller {
         {
             // Spit invalid user back to register page, $this->form_validation
             // has been updated and so validation_errors() can give feedback
+            $this->template_data['page_title'] = 'Welcome';
+            $this->template_data['choice']     = 'Home';
             $this->template_data['content'] = 'form/register';
             $this->load->view('template', $this->template_data);
         }

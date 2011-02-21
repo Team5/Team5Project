@@ -20,30 +20,8 @@
  * @subpackage	Controllers
  * @author	Team 5
  */
-class Admin extends CI_Controller {
-    
-    /**
-     * Constructor
-     */
-    function __construct()
-    {
-        // Call CI_Controller::__construct() so $this is still a CI_Controller
-        parent::__construct();
-        $this->email = $this->session->userdata('email');
-        $this->name = $this->session->userdata('name');
-        $this->type  = $this->session->userdata('type');
-        $this->logged_in = $this->session->userdata('logged_in');
-        
-        // Setup $header_data for the view header.php that 'template.php' calls
-        $this->template_data  = array(
-            'page_title' => 'ADMIN',
-            'choice'     => 'Home',
-            'type'       => $this->type,
-            'name'       => $this->name,
-            'email'      => $this->email,
-            'logged_in'  => $this->logged_in
-        );
-    }
+
+class Admin extends SC_Controller {
     
     /**
      * Admin page
@@ -56,6 +34,8 @@ class Admin extends CI_Controller {
         if($this->logged_in && $this->email==ADMIN_EMAIL)
         {
             // Set the view to be used in the content section of the page
+            $this->template_data['page_title'] = 'ADMIN';
+            $this->template_data['choice']     = 'Home';
             $this->template_data['content'] = 'settings/admin';
             $this->load->view('template',$this->template_data);
         }
@@ -84,6 +64,8 @@ class Admin extends CI_Controller {
         {
             $data['users'] = $this->users_model->get_all();
 
+            $this->template_data['page_title'] = 'ADMIN';
+            $this->template_data['choice']     = 'Home';
             $this->template_data['content'] = 'collection/users';
             $this->template_data['content_data'] = $data;
             $this->load->view('template', $this->template_data);
@@ -108,6 +90,8 @@ class Admin extends CI_Controller {
                 'All' => $this->courses_model->get_all()
             );
 
+            $this->template_data['page_title'] = 'ADMIN';
+            $this->template_data['choice']     = 'Home';
             $this->template_data['content'] = 'collection/courses';
             $this->template_data['content_data'] = $data;
             $this->load->view('template', $this->template_data);
@@ -127,6 +111,8 @@ class Admin extends CI_Controller {
         {
             $data['rooms'] = $this->rooms_model->get_all();
 
+            $this->template_data['page_title'] = 'ADMIN';
+            $this->template_data['choice']     = 'Home';
             $this->template_data['content'] = 'collection/rooms';
             $this->template_data['content_data'] = $data;
             $this->load->view('template', $this->template_data);
@@ -136,12 +122,6 @@ class Admin extends CI_Controller {
             redirect('home');
         }
     }
-
-    /*-----------------------------------------------------------------------
-     *
-     * Pages for changing information
-     *
-     *-----------------------------------------------------------------------*/
 
     /*-----------------------------------------------------------------------
      *
