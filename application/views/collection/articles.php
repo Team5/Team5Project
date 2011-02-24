@@ -1,17 +1,15 @@
 <?php
-  // Recieves $news_articles:
-  // array(
-  //  article(
-  //      title  -> string,
-  //      author -> string,
-  //      publish_datetime -> string,
-  //      article_text -> string
-  //  ),
-  //  article(...),
-  //  ...
-  // );
-  // OR
-  // NULL
+ /**
+  * collection/articles View
+  *
+  * Receives list of articles, presents them.
+  *
+  * @todo different users make use of this page in different ways
+  *     admin     must be able to delete+update from this page
+  *     providers must be able to delete+update their own articles from this page
+  * @param Array $news_articles article objects
+  *
+  */
 ?>
 <table>
     <? if($news_articles!==NULL): $odd=0; foreach($news_articles as $item):?>

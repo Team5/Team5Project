@@ -1,3 +1,21 @@
+<?php
+ /**
+  * settings/admin View
+  *
+  * Provides options for the admin, add,update,delete user, add,update,delete course,
+  * enroll user, accpet provider, rooms, enrollment details. Ideally this will all
+  * be paginated with nice ajax for loading next lot of entries...otherwise 2
+  * minutes to load the page... Search wouldn't hurt
+  *
+  * @todo Should fit it's description a bit better
+  * @param Array $users Array of users to make update, delete easier
+  * @param Array $courses Array of courses to make update, delete easier
+  * @param Array $enrolled Array of enrollment details to make update, delete easier
+  * @param Array $rooms Array of rooms to make update, delete easier
+  *
+  */
+?>
+<h2>Users</h2>
 <fieldset>
     <legend>Add a new User</legend>
     <fieldset>

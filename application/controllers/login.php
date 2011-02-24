@@ -20,7 +20,6 @@
  * @subpackage	Controllers
  * @author	Team 5
  */
-
 class Login extends SC_Controller {
 
     /**

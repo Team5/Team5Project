@@ -1,4 +1,12 @@
 <?php
+ /**
+  * form/login View
+  *
+  * Receives list of users, presents them and actions for user to perform on
+  *     selected users
+  *
+  */
+
 $email_input = array('name'=>'email', 'id'=>'email', 'value' => set_value('email'));
 $pass_input = array('name'=>'pass', 'id'=>'pass');
 ?>

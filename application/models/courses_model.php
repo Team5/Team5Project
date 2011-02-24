@@ -19,6 +19,8 @@
  * @package     UCCSC
  * @subpackage	Models
  * @author	Team 5
+ *
+ * @todo Get rid of enrollment related parts
  */
 class Courses_model extends CI_Model {
     

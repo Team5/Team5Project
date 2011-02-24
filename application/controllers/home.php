@@ -19,8 +19,8 @@
  * @package     UCCSC
  * @subpackage	Controllers
  * @author	Team 5
+ * @todo If we don't want a contact form we can have contact page served from here.
  */
-
 class Home extends SC_Controller {
 
     /**

@@ -1,3 +1,14 @@
+<?php
+ /**
+  * form/contact View
+  *
+  * Receives list of users, presents them and actions for user to perform on
+  *     selected users
+  *
+  * @todo Should we have this at all?
+  *
+  */
+?>
 <div id="contact_form">
     <h1>Contact Us!</h1>
     <?php

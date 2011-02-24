@@ -1,3 +1,16 @@
+<?php
+ /**
+  * collection/users View
+  *
+  * Receives list of users, presents them and actions for user to perform on
+  *     selected users
+  *
+  * @todo different users make use of this page in different ways
+  *     admin     must be able to accept providers+delete+update from this page
+  * @param Array $users Array of user objects
+  *
+  */
+?>
 <h2>Users</h2>
 <div id="users">
     <table>

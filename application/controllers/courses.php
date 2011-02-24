@@ -20,31 +20,7 @@
  * @subpackage	Controllers
  * @author	Team 5
  */
-class Courses extends CI_Controller {
-    
-    /**
-     * Construct
-     */
-    function __construct()
-    {
-        // Call CI_Controller::__construct() so $this is still a CI_Controller
-        parent::__construct();
-        $this->email = $this->session->userdata('email');
-        $this->name = $this->session->userdata('name');
-        $this->type  = $this->session->userdata('type');
-        $this->logged_in = $this->session->userdata('logged_in');
-        
-        // Setup $header_data for the view header.php that 'template.php' calls
-        $this->template_data  = array(
-            'page_title' => 'Courses',
-            'choice'     => 'Courses',
-            'type'       => $this->type,
-            'name'       => $this->name,
-            'email'      => $this->email,
-            'logged_in'  => $this->logged_in
-        );
-    }
-
+class Courses extends SC_Controller {
 
     /**
      * index
@@ -58,7 +34,10 @@ class Courses extends CI_Controller {
             'Science'   => $this->courses_model->get_by_area('science'),
             'Languages' => $this->courses_model->get_by_area('languages'),
         );
-        
+
+        $this->template_data['page_title'] = 'Courses';
+        $this->template_data['choice'] = 'Courses';
+
         // Set view for content section of template
         $this->template_data['content'] = 'collection/courses';
         // Set data for view for content section of template
@@ -112,5 +91,15 @@ class Courses extends CI_Controller {
         }
         $this->template_data['content'] = 'item/course';
         $this->load->view('template', $this->template_data);
+    }
+
+    function select()
+    {
+        if($this->input->post('Submit'))
+        {
+            //$this->session->set_userdata('selected', $selected);
+        } else {
+            redirect('home');
+        }
     }
 }

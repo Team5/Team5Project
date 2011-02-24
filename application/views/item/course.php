@@ -1,3 +1,14 @@
+<?php
+ /**
+  * item/course View
+  *
+  * Provides individual course info
+  *
+  * @todo Should be a lot nicer, probably not a table so!
+  * @param Course $course Course Object
+  *
+  */
+?>
 <? if(isset($course)): ?>
 <table>
     <tr>

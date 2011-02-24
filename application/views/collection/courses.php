@@ -1,3 +1,18 @@
+<?php
+ /**
+  * collection/courses View
+  * 
+  * Receives list of courses, presents them and actions for user to perform on
+  *     selected courses
+  *
+  * @todo different users make use of this page in different ways
+  *     admin     must be able to delete+update from this page
+  *     providers must be able to delete+update their own courses from this page
+  * @param Array $courses courses sorted by area, key=>area, value=>array of
+  *     course objects
+  *
+  */
+?>
 <h2>Courses</h2>
 <?=form_open('courses/select')?>
 
@@ -22,7 +37,9 @@
         <tbody>
         <? if(count($courses_in_area)>0): $odd=0; foreach($courses_in_area as $course):?>
         <tr <?=($odd^=1)?' class="odd_row"':''?>>
-            <td><?=form_checkbox("select[{$course->area},{$course->course_id}]", "selected{$course->area}", FALSE)?></td>
+            <td><?=form_checkbox($course->course_id,
+                                 "sel-".$course->course_id,
+                                 FALSE)?></td>
             <td><?=anchor('courses/by_id/'.$course->course_id, $course->short_title)?></td>
             <td><?=$course->title?></td>
             <td><?=anchor('courses/by_area/'.$course->area, $course->area)?></td>
@@ -41,7 +58,7 @@
     
 <? endforeach;?>
 
-    <button name="submit" id="submit" value="submit" type="button" >Apply to selected Courses</button>
+    <?=form_submit('Submit', 'submit')?>
 <?=form_close()?>
 
 <script type="text/javascript">

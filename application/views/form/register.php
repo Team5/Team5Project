@@ -1,3 +1,11 @@
+<?php
+ /**
+  * form/register View
+  *
+  * Provides form for registering a user
+  * 
+  */
+?>
 <h2>Create an account</h2>
 <fieldset>
     <legend>Personal Information</legend>

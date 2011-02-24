@@ -1,3 +1,17 @@
+<?php
+ /**
+  * collection/rooms View
+  *
+  * Receives list of courses, presents them and actions for user to perform on
+  *     selected rooms
+  *
+  * @todo different users make use of this page in different ways
+  *     admin     must be able to accept+delete+update from this page
+  *     providers must be able to add rooms(they must be approved by admin)
+  * @param Array $rooms Array of room objects
+  *
+  */
+?>
 <h2>Rooms</h2>
 <div id="rooms">
     <table>
