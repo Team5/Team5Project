@@ -44,7 +44,6 @@ class Enrollment_model extends CI_Model {
      *
      * Accept a user user $uid to course $cid by setting Enrolled to True
      *
-     * @todo fill this in
      * @param int $uid ID of user
      * @param int $cid ID of course
      */
@@ -61,7 +60,6 @@ class Enrollment_model extends CI_Model {
      *
      * Remove an application
      *
-     * @todo fill this in
      * @param int $uid ID of user
      * @param int $cid ID of course
      */
@@ -73,5 +71,65 @@ class Enrollment_model extends CI_Model {
             'cid' => $cid,
             );
         $this->db->delete('enrollment' , $data);
+    }
+
+    /**
+     * get_enrolled_users($cid)
+     *
+     * Get list of uids of users enrolled in course $cid
+     *
+     * @todo implement get_enrolled_users($cid)
+     * @param int $cid ID of course
+     * @return array $uids List of user ids of users enrolled in this course
+     */
+    function get_enrolled_users($cid)
+    {
+        $uids = array();
+        return $uids;
+    }
+
+    /**
+     * get_enrolled_courses($uid)
+     *
+     * Get list of cids of courses user $uid is enrolled in
+     *
+     * @todo implement get_enrolled_courses($uid)
+     * @param int $uid ID of user
+     * @return array $cids List of course ids of courses this user is enrolled in
+     */
+    function get_enrolled_courses($uid)
+    {
+        $cids = array();
+        return $cids;
+    }
+
+    /**
+     * get_applied_users($cid)
+     *
+     * Get list of uids of users applied for course $cid
+     *
+     * @todo implement get_applied_courses($uid)
+     * @param int $cid ID of course
+     * @return array $uids List of user ids applied for this course
+     */
+    function get_applied_users($cid)
+    {
+        $uids = array();
+        return $uids;
+    }
+
+    /**
+     * get_applied_courses($uid)
+     *
+     * Get list of cids of courses user $uid is enrolled in
+     *
+     * @todo implement get_applied_courses($uid)
+     * @param int $uid ID of user
+     * @return array $cids List of course ids of courses this user has applied for
+     */
+    function get_applied_courses($uid)
+    {
+        $cids = array();
+        return $cids;
     }
 }
