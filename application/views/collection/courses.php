@@ -38,7 +38,7 @@
         <? if(count($courses_in_area)>0): $odd=0; foreach($courses_in_area as $course):?>
         <tr <?=($odd^=1)?' class="odd_row"':''?>>
             <td><?=form_checkbox($course->course_id,
-                                 "sel-".$course->course_id,
+                                 $course->course_id,
                                  FALSE)?></td>
             <td><?=anchor('courses/by_id/'.$course->course_id, $course->short_title)?></td>
             <td><?=$course->title?></td>

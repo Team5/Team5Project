@@ -95,6 +95,7 @@ class Courses extends SC_Controller {
 
     function select()
     {
+        print_r($_POST);
         if($this->input->post('Submit'))
         {
             //$this->session->set_userdata('selected', $selected);

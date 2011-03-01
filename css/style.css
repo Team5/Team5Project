@@ -1,0 +1,117 @@
+@charset "utf-8";
+/* CSS Document */
+
+/* General Setting*/
+
+.centered{
+	text-align 			: center;\
+	}
+
+.sidePad{
+	padding-left		: 2px;
+	padding-right		: 2px;
+	}
+	
+.column{
+	float				: left;
+	}
+
+.row{
+	clear				: both;
+	}
+		
+#mainContainer{
+	background			: url(Elements/background1.jpg);
+	top					: 6px;
+	width				: 930px;
+	}	
+
+/* Header */
+
+#header{
+	height:				: 10px;
+	margin-top			: 6px;
+	margin-buttom		: 6px;
+	}
+	
+p1{
+	text-align			: left;
+	font-size			: 9px;
+	}
+
+#header_login{
+	text-align			: left;
+	width				: 926px;
+	height				: 20px;				
+	padding-top			: 4px;
+	padding-bottom		: 4px;
+	border-top			: 1px solid #FFF;
+	}
+	
+#header_logo{
+	background			: #FFF;
+	text-align			: right;
+	width				: 926px;
+	padding-top			: 4px;
+	padding-bottom		: 4px;	
+	}
+	
+#header_logo_UCC{
+	width				: 204px;
+	height				: 75px;
+	}
+	
+#header_logo_2011{
+	background			: url(/images/static/sc2011_logo.jpg);
+	margin-left			: 6px;
+	width				: 620px;
+	height				: 75px;
+	}
+	
+/* PageContent */
+
+#pageContent{
+	width				: 926px;
+	}
+	
+#menuBar{
+	text-align			: right;
+	padding-top			: 2px;
+	padding-bottom		: 2px;
+	border-bottom		: 1px solid #C9F;
+	}
+
+#menuBar ul,#menuBar li {
+        text-decoration: none;
+        display : inline;
+        }
+	
+#side_info{
+	margin-top			: 4px;
+	margin-bottom		: 4px;
+	width				: 926px;
+	}
+	
+#side_info_left{
+	width				: 170px;
+	}
+	
+#calendar{
+	padding-bottom		: 4px;
+	border-bottom		: 1px solid #C9F;
+	}
+	
+#side_info_right{
+	width				: 628px;
+	border-left			: 1px solid #C9F;
+	}
+	
+/* Footer */
+
+#footer{
+	margin-top			: 4px;
+	padding-left		: 4px;
+	bottom				: 6px;
+	width				: 926px;
+	border-top			: 1px solid #C9F;
+	}
