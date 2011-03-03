@@ -30,7 +30,7 @@
 <fieldset>
     <legend>User type</legend>
         <?=form_dropdown('type', array('user', 'provider'), set_value('type', 'Type'), 'id="user_type"')?>
-        <?=form_dropdown('area', array('general','science','languages'), set_value('area', 'Area'), 'id="user_area"')?>
+        <?=form_dropdown('area', array('arts', 'business', 'science', 'medicine'), set_value('area', 'Area'), 'id="user_area"')?>
 </fieldset>
 <fieldset>
     <legend>Login Info</legend>

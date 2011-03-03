@@ -10,6 +10,7 @@
   *     providers must be able to delete+update their own courses from this page
   * @param Array $courses courses sorted by area, key=>area, value=>array of
   *     course objects
+  * @param string $type The type of user
   *
   */
 ?>
@@ -17,14 +18,20 @@
 <?=form_open('courses/apply')?>
 
 <? foreach($courses as $area => $courses_in_area):?>
-    <h2 onclick="$('#<?=$area?>').slideToggle();"><?=$area?></h2>
+<?php
+$title = $courses_in_area[0];
+$courses = $courses_in_area[1];
+?>
+<? if(count($courses) > 0): ?>
+    <h3 onclick="$('#<?=$area?>').slideToggle();"><?=$title?> (click to expand)</h3>
     
     <div class="course_box" id="<?=$area?>">
     <table>
         <thead>
         <tr>
+            <? if($type == 'user'):?>
             <th>Selected</th>
-            <th>ShortName</th>
+            <? endif;?>
             <th>Name</th>
             <th>Area</th>
             <th>Description</th>
@@ -35,12 +42,13 @@
         </tr>
         </thead>
         <tbody>
-        <? if(count($courses_in_area)>0): $odd=0; foreach($courses_in_area as $course):?>
+        <? if(count($courses)>0): $odd=0; foreach($courses as $course):?>
         <tr <?=($odd^=1)?' class="odd_row"':''?>>
+            <? if($type == 'user'):?>
             <td><?=form_checkbox('selected_courses[]',
                                  $course->cid,
                                  FALSE)?></td>
-            <td><?=anchor('courses/by_id/'.$course->cid, $course->short_title)?></td>
+            <? endif;?>
             <td><?=$course->title?></td>
             <td><?=anchor('courses/by_area/'.$course->area, $course->area)?></td>
             <td><?=$course->description?></td>
@@ -55,10 +63,12 @@
         </tbody>
     </table>
     </div>
-    
+<? endif;?>
 <? endforeach;?>
-
-    <?=form_submit('Submit', 'submit')?>
+    
+<? if($type == 'user'): ?>
+    <?=form_submit('Submit', 'Apply')?>
+<? endif;?>
 <?=form_close()?>
 
 <script type="text/javascript">

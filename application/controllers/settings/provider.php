@@ -60,7 +60,7 @@ class Provider extends SC_Controller {
     {
         $enroll_users = $this->input->post('enroll_users');
         $is_ajax = $this->input->post('ajax');
-
+print_r($_POST);
         foreach($enroll_users as $en_user)
         {
             $user_prov = explode(',',$en_user);
@@ -69,11 +69,37 @@ class Provider extends SC_Controller {
 
         if($is_ajax)
         {
-            echo "Gibbrish1";
+            redirect('settings/provider');
         }
         else
         {
-            echo "Gibbrish2";
+            redirect('settings/provider');
         }
+    }
+
+    function add_course()
+    {
+        $date = getDate();
+        $areas = array('arts', 'business', 'science', 'medicine');
+
+        $sd = ($date['year']) - $this->input->post('start_year');
+        $sd .= '-'.($this->input->post('start_month')+1);
+        $sd .= '-'.($this->input->post('start_day')+1);
+
+        $ed = ($date['year']) - $this->input->post('end_year');
+        $ed .= '-'.($this->input->post('end_month')+1);
+        $ed .= '-'.($this->input->post('end_day')+1);
+
+        $course = array(
+            'title'       => $this->input->post('title'),
+            'pid'         => $this->uid,
+            'rid'         => $this->input->post('rid'),
+            'area'        => $areas[$this->input->post('area')],
+            'start_date'  => $sd,
+            'end_date'    => $ed,
+            'description' => $this->input->post('description')
+        );
+        print_r($course);
+        echo $this->courses_model->add($course) ? 'SUCCESS': 'FAIL';
     }
 }

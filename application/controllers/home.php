@@ -32,7 +32,7 @@ class Home extends SC_Controller {
     {
         $this->template_data['page_title'] = 'Welcome';
         $this->template_data['choice']     = 'Home';
-        $this->load->view('template', $this->template_data);
+        $this->load->view('home', $this->template_data);
     }
     
     /**

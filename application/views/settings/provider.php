@@ -10,10 +10,13 @@
 ?>
 <? foreach($courses as $course): ?>
 <h2><?=$course->title?></h2>
-<h2>Applied</h2>
 <?=form_open('settings/provider/enroll')?>
 <? if(count($course->applied) > 0): ?>
 <table>
+    <thead>
+        <th colspan="3">Applied</th>
+    </thead>
+    <tbody>
     <tr>
         <th scope="col">Name</th>
         <th scope="col">Email</th>
@@ -29,14 +32,16 @@
                              False)?></td>
     </tr>
     <? endforeach;?>
-<? else: ?>
-<p>No users awaiting confirmation of enrollment for this course at the moment</p>
+    </tbody>
+    </table>
 <? endif ?>
-</table>
 
-<h2>Enrolled</h2>
 <? if(count($course->enrolled) > 0): ?>
 <table>
+    <thead>
+    <th colspan="2">Enrolled</th>
+    </thead>
+    <tbody>
     <tr>
         <th scope="col">Name</th>
         <th scope="col">Email</th>
@@ -47,42 +52,97 @@
         <td><?=$user->email?></td>
     </tr>
     <? endforeach;?>
+    </tbody>
 </table>
-<? else: ?>
-<p>No users accepted as enrolled in this course at the moment</p>
 <? endif; ?>
 <? endforeach;?>
 
 <?=form_submit('Submit', 'enroll', 'id="enroll_button"')?>
 <?=form_close()?>
 
+<h2>Add new course?</h2>
+<fieldset>
+    <legend>Add a new course</legend>
+    <?=form_open('settings/provider/add_course')?>
 
-<!--<script language="javascript " type="application/x-javascript">
-$('#enroll_button').click(function(){
+    <fieldset>
+        <legend>Course details</legend>
+        <?=form_input('title', set_value('title', 'Course Name'))?>
 
-    var name = $('#name').val();
+        <?=form_input('rid', set_value('rid', 'Room ID'))?>
 
-    if(!name || name == 'Name'){
-        alert('Please enter your name.');
-        return false;
+        <?=form_dropdown('area', array('arts', 'business', 'science', 'medicine'), set_value('area'))?>
+
+        <?=form_textarea('description', 'Course Description')?>
+        
+    </fieldset>
+
+    <fieldset>
+        <label>Course dates</label>
+    <?php
+    
+    $months = array(
+        "January",  "Febuary",  "March",        "April",    "May",      "June",
+        "July",     "August",   "September",    "October",  "November", "December"
+    );
+    $date = getdate();
+    $years = range($date['year'], $date['year']+1);
+    ?>
+    <br/>Start-date:<br/>
+    <?=form_dropdown('start_day', range(1,31), set_value('start_day', '1'), 'id="start_day"')?>
+    <?=form_dropdown('start_month', $months, set_value('start_months', 'January'), 'id="start_month"')?>
+    <?=form_dropdown('start_year', $years, set_value('start_year', '1'), 'id="start_year"')?>
+    
+    <br/>End-date:<br/>
+    <?=form_dropdown('end_day', range(1,31), set_value('end_day', '1'), 'id="end_day"')?>
+    <?=form_dropdown('end_month', $months, set_value('end_months', 'January'), 'id="end_month"')?>
+    <?=form_dropdown('end_year', $years, set_value('end_year', '1'), 'id="end_year"')?>
+    </fieldset>
+    <?=form_submit('Submit', 'add course', 'id="add_course_button"')?>
+
+    <?=validation_errors('<p class="error">')?>
+
+    <?=form_close()?>
+
+</fieldset>
+
+<script language="javascript " type="application/x-javascript">
+$(document).ready(function(){
+    /*$('input').click(function(){
+        $(this).val("");
+    });*/
+
+    months = [ 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 ];
+
+    function isLeapYear(year){
+        year = <?=$date['year']-17?> - year;
+        if(year % 400 == 0){
+            return true;
+        } else if(year % 100 == 0){
+            return false;
+        } else if(year % 4 == 0){
+            return true;
+        } else {
+            return false;
+        }
     }
 
-    var form_data = {
-        name:    $('#name').val(),
-        email:   $('#email').val(),
-        message: $('#message').val(),
-        ajax:    '1'
-    };
-
-    $.ajax({
-        url:     '<?=site_url('settings/provider/apply');?>',
-        type:    'POST',
-        data:    form_data,
-        success: function(msg){
-            alert(msg);
-        }
-    });
-
-    return false;
+    var se = ['#start', '#end'];
+    
+    for(var i=0; i<2; i++) {
+        $(se[i]+'_month', se[i]+'_year').change(function(){
+    
+            var year  = $(se[i]+'_year').val();
+            var month = $(se[i]+'_month').val();
+            var newOptions = "";
+            for(var i=1; i<=months[month]; i++){
+                newOptions += '<option value="'+i+'">'+i+'</option>';
+            }
+            if(month == 1 && isLeapYear(year)){
+                newOptions += '<option value="'+29+'">'+29+'</option>';
+            }
+            $(se[i]+'_day').html(newOptions);
+        });
+    }
 });
-</script>-->
+</script>

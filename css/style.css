@@ -4,7 +4,7 @@
 /* General Setting*/
 
 .centered{
-	text-align 			: center;\
+	text-align 			: center;
 	}
 
 .sidePad{
@@ -21,7 +21,7 @@
 	}
 		
 #mainContainer{
-	background			: url(Elements/background1.jpg);
+	background			: url(/images/static/background1.jpg);
 	top					: 6px;
 	width				: 930px;
 	}	

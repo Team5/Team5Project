@@ -31,9 +31,16 @@ class Courses extends SC_Controller {
     {
         // Map of areas mapped to arrays of courses in those areas
         $data['courses'] = array(
-            'Science'   => $this->courses_model->get_by_area('science'),
-            'Languages' => $this->courses_model->get_by_area('languages'),
+            'arts'     => array('Arts, Celtic Studies and Social Sciences',
+                                $this->courses_model->get_by_area('arts')),
+            'business' => array('Business and Law',
+                                $this->courses_model->get_by_area('business')),
+            'medicine' => array('Medicine and Health',
+                                $this->courses_model->get_by_area('medicine')),
+            'science'  => array('Science, Engineering and Food Science',
+                                $this->courses_model->get_by_area('science'))
         );
+        $data['type'] = $this->type;
 
         $this->template_data['page_title'] = 'Courses';
         $this->template_data['choice'] = 'Courses';

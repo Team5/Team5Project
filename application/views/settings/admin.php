@@ -33,7 +33,7 @@
         <legend>Type</legend>
         <?=form_dropdown('type', array('user', 'provider'), set_value('type', 'Type'), 'id="user_type"')?>
 
-        <?=form_dropdown('area', array('general','science','languages'), set_value('area', 'Area'), 'id="user_area"')?>
+        <?=form_dropdown('area', array('arts', 'business', 'science', 'medicine'), set_value('area', 'Area'), 'id="user_area"')?>
 
     </fieldset>
     <fieldset>
@@ -65,8 +65,9 @@
         <legend>Course details</legend>
         <?=form_input('title', set_value('title', 'Course Name'))?>
 
-        <?=form_input('provider_id', set_value('provider_id', 'Provider ID'))?>
+        <?=form_input('pid', set_value('pid', 'Provider ID'))?>
 
+        <?=form_input('rid', set_value('rid', 'Room ID'))?>
 
         <?=form_dropdown('area', array('general','science','languages'), set_value('area'))?>
 

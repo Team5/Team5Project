@@ -142,7 +142,7 @@ class Admin extends SC_Controller {
             {
                 $tasks = array('add', 'update', 'delete');
                 $types = array('user', 'provider');
-                $areas = array('general', 'science', 'languages');
+                $areas = array('arts', 'business', 'science', 'medicine');
                 $user = array(
                     'name'     => $this->input->post('name'),
                     'email'    => $this->input->post('email'),
@@ -191,8 +191,8 @@ class Admin extends SC_Controller {
                 $areas = array('general', 'science', 'languages');
                 $course = array(
                     'title'       => $this->input->post('title'),
-                    'short_title'  => $this->input->post('short_title'),
-                    'provider_id' => $this->input->post('provider_id'),
+                    'pid'         => $this->input->post('pid'),
+                    'rid'         => $this->input->post('rid'),
                     'area'        => $areas[$this->input->post('area')],
                     'description' => $this->input->post('description')
                 );
