@@ -14,7 +14,7 @@
   */
 ?>
 <h2>Courses</h2>
-<?=form_open('courses/select')?>
+<?=form_open('courses/apply')?>
 
 <? foreach($courses as $area => $courses_in_area):?>
     <h2 onclick="$('#<?=$area?>').slideToggle();"><?=$area?></h2>
@@ -37,10 +37,10 @@
         <tbody>
         <? if(count($courses_in_area)>0): $odd=0; foreach($courses_in_area as $course):?>
         <tr <?=($odd^=1)?' class="odd_row"':''?>>
-            <td><?=form_checkbox($course->course_id,
-                                 $course->course_id,
+            <td><?=form_checkbox('selected_courses[]',
+                                 $course->cid,
                                  FALSE)?></td>
-            <td><?=anchor('courses/by_id/'.$course->course_id, $course->short_title)?></td>
+            <td><?=anchor('courses/by_id/'.$course->cid, $course->short_title)?></td>
             <td><?=$course->title?></td>
             <td><?=anchor('courses/by_area/'.$course->area, $course->area)?></td>
             <td><?=$course->description?></td>

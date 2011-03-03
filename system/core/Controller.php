@@ -74,6 +74,7 @@ class SC_Controller extends CI_Controller {
         $this->email = $this->session->userdata('email');
         $this->name = $this->session->userdata('name');
         $this->type  = $this->session->userdata('type');
+        $this->uid  = $this->session->userdata('uid');
         $this->logged_in = $this->session->userdata('logged_in');
 
         // Setup $header_data for the view header.php that 'template.php' calls
