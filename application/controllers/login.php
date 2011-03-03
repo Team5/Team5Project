@@ -45,6 +45,7 @@ class Login extends SC_Controller {
                                                 $this->input->post('pass')))
         {
             $data = array(
+                'uid'   => $user[0]->uid,
                 'email' => $user[0]->email,
                 'type'  => $user[0]->type,
                 'name'  => $user[0]->fname . ' ' . $user[0]->sname,

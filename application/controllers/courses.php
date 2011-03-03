@@ -93,12 +93,17 @@ class Courses extends SC_Controller {
         $this->load->view('template', $this->template_data);
     }
 
-    function select()
+    function apply()
     {
-        print_r($_POST);
         if($this->input->post('Submit'))
         {
-            //$this->session->set_userdata('selected', $selected);
+            foreach($this->input->post('selected_courses') as $cid)
+            {
+                if($this->courses_model->get($cid))
+                {
+                    $this->enrollment_model->apply($this->uid, $cid);
+                }
+            }
         } else {
             redirect('home');
         }
