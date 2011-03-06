@@ -9,20 +9,19 @@
   */
 ?>
 <? foreach($courses as $course): ?>
-<h2><?=$course->title?></h2>
+<h3><?=$course->title?></h3>
 <?=form_open('settings/provider/enroll')?>
 <? if(count($course->applied) > 0): ?>
-<table>
+<a href="#" onclick="$('#Applied_<?=$course->cid?>').slideToggle('slow')" colspan="3">List Applied</a>
+<table id="Applied_<?=$course->cid?>">
     <thead>
-        <th colspan="3">Applied</th>
+        <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Enroll?</th>
+        </tr>
     </thead>
     <tbody>
-    <tr>
-        <th scope="col">Name</th>
-        <th scope="col">Email</th>
-        <th scope="col">Enroll?</th>
-    </tr>
-
     <? foreach($course->applied as $user): ?>
     <tr>
         <td><?=$user->fname." ".$user->sname?></td>
@@ -37,15 +36,15 @@
 <? endif ?>
 
 <? if(count($course->enrolled) > 0): ?>
-<table>
+<a href="#" onclick="$('#Enrolled_<?=$course->cid?>').slideToggle('slow')" colspan="2">List Enrolled</a>
+<table id="Enrolled_<?=$course->cid?>">
     <thead>
-    <th colspan="2">Enrolled</th>
+        <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Email</th>
+        </tr>
     </thead>
     <tbody>
-    <tr>
-        <th scope="col">Name</th>
-        <th scope="col">Email</th>
-    </tr>
     <? foreach($course->enrolled as $user): ?>
     <tr>
         <td><?=$user->fname." ".$user->sname?></td>
@@ -108,6 +107,8 @@
 
 <script language="javascript " type="application/x-javascript">
 $(document).ready(function(){
+    $('table').hide();
+
     /*$('input').click(function(){
         $(this).val("");
     });*/

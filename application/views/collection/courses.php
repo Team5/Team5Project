@@ -33,13 +33,11 @@ $courses = $courses_in_area[1];
         <thead>
             <tr>
                 <? if($type == 'user'):?>
-                <th>Selected</th>
+                <th>Pick</th>
                 <? endif;?>
                 <th>Name</th>
                 <th>Description</th>
-                <th>Start Date</th>
-                <th>End Date</th>
-                <th>Places</th>
+                <th>Details</th>
             </tr>
         </thead>
         <tbody>
@@ -58,16 +56,15 @@ $courses = $courses_in_area[1];
               }
               ?>>
             <? if($type == 'user'):?>
-            <td><?=form_checkbox('selected_courses[]',
+            <td rowspan="3"><?=form_checkbox('selected_courses[]',
                                  $course->cid,
                                  FALSE)?></td>
             <? endif;?>
-            <td><?=$course->title?></td>
-            <td><?=$course->description?></td>
-            <td><?=$course->start_date?></td>
-            <td><?=$course->end_date?></td>
-            <td><?=$course->enrolled_max - $course->enrolled_count?></td>
-        </tr>
+            <th rowspan="3"><?=$course->title?></th>
+            <td rowspan="3"><?=$course->description?></td>
+                <td><?=$course->start_date?></td></tr>
+            <tr<?=($filled)?' class="filled"':''?>><td><?=$course->end_date?></td></tr>
+            <tr<?=($filled)?' class="filled"':''?>><td><?=$course->enrolled_max - $course->enrolled_count?></td></tr>
         <? endforeach; else:?>
            <tr><td colspan="all">Nothing here</td></tr>
         <? endif;?>

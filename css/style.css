@@ -83,9 +83,6 @@ p1{
 
 #pageContent table{
         width : 750px;
-        }
-
-#pageContent table{
         border-collapse                 : collapse;
         border-top                      : 2px solid white;
         }
@@ -103,7 +100,8 @@ p1{
         background-position: right;
 	width:750px;
 	cursor:pointer;
-        border-top                      : 2px solid white;
+        /*border-top                      : 2px solid grey;*/
+        border-bottom                      : 2px solid grey;
         }
 
 #pageContent table td{
