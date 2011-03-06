@@ -15,47 +15,58 @@
   */
 ?>
 <h2>Courses</h2>
-<?=form_open('courses/apply')?>
 
+<?=form_open('courses/apply')?>
+<div id="accordion">
 <? foreach($courses as $area => $courses_in_area):?>
 <?php
 $title = $courses_in_area[0];
 $courses = $courses_in_area[1];
 ?>
+
 <? if(count($courses) > 0): ?>
-    <h3 onclick="$('#<?=$area?>').slideToggle();"><?=$title?> (click to expand)</h3>
-    
-    <div class="course_box" id="<?=$area?>">
-    <table>
+    <h3 class="area_title" > <!--onclick="$('#<?=$area?>').slideToggle('slow');"-->
+        <a href="#"><?=$title?></a>
+    </h3>
+    <div>
+    <table class="course_box" id="<?=$area?>">
         <thead>
-        <tr>
-            <? if($type == 'user'):?>
-            <th>Selected</th>
-            <? endif;?>
-            <th>Name</th>
-            <th>Area</th>
-            <th>Description</th>
-            <th>Start Date</th>
-            <th>End Date</th>
-            <th>Enrolled</th>
-            <th>Capacity</th>
-        </tr>
+            <tr>
+                <? if($type == 'user'):?>
+                <th>Selected</th>
+                <? endif;?>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Places</th>
+            </tr>
         </thead>
         <tbody>
         <? if(count($courses)>0): $odd=0; foreach($courses as $course):?>
-        <tr <?=($odd^=1)?' class="odd_row"':''?>>
+        <?php
+            $filled = 0>=($course->enrolled_max - $course->enrolled_count);
+
+        ?>
+            <tr<?
+              if ($odd^=1 OR $filled)
+              {
+                  echo ' class="';
+                  if($odd)    echo " odd_row";
+                  if($filled) echo " filled";
+                  echo '"';
+              }
+              ?>>
             <? if($type == 'user'):?>
             <td><?=form_checkbox('selected_courses[]',
                                  $course->cid,
                                  FALSE)?></td>
             <? endif;?>
             <td><?=$course->title?></td>
-            <td><?=anchor('courses/by_area/'.$course->area, $course->area)?></td>
             <td><?=$course->description?></td>
             <td><?=$course->start_date?></td>
             <td><?=$course->end_date?></td>
-            <td><?=$course->enrolled_count?></td>
-            <td><?=$course->enrolled_max?></td>
+            <td><?=$course->enrolled_max - $course->enrolled_count?></td>
         </tr>
         <? endforeach; else:?>
            <tr><td colspan="all">Nothing here</td></tr>
@@ -69,10 +80,14 @@ $courses = $courses_in_area[1];
 <? if($type == 'user'): ?>
     <?=form_submit('Submit', 'Apply')?>
 <? endif;?>
+</div>
 <?=form_close()?>
 
 <script type="text/javascript">
 $(document).ready(function(){
-    $('.course_box').hide()
+    $('.area_title').click(function() {
+            $(this).next().slideToggle('slow');
+            return false;
+    }).next().hide();
 });
 </script>

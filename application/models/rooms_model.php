@@ -34,8 +34,8 @@ class rooms_model extends CI_Model {
      */
     function get($rid)
     {
-        // SELECT * FROM rooms WHERE room_id = $rid;
-        $this->db->where('room_id', $rid);
+        // SELECT * FROM rooms WHERE rid = $rid;
+        $this->db->where('rid', $rid);
         $q = $this->db->get('rooms');
         if($q->num_rows() > 0)
         {
@@ -90,12 +90,12 @@ class rooms_model extends CI_Model {
      * Update a room's information
      *
      * @access public
-     * @param integer $room_id Room ID of user to have info updated
+     * @param integer $rid Room ID of user to have info updated
      * @param array $course_info Array filled with changed info
      * @return boolean
      */
-    function update($room_id, $room_info) {
-        $this->db->where('room_id', $room_id);
+    function update($rid, $room_info) {
+        $this->db->where('rid', $rid);
         return $this->db->update('rooms', $room_info);
     }
     
@@ -105,11 +105,11 @@ class rooms_model extends CI_Model {
      * Delete a room from the rooms table
      *
      * @access public
-     * @param integer $room_id Room ID of room to be removed from rooms table
+     * @param integer $rid Room ID of room to be removed from rooms table
      * @return boolean
      */
-    function delete($room_id) {
-        $this->db->where('room_id', $room_id);
+    function delete($rid) {
+        $this->db->where('rid', $rid);
         return $this->db->delete('rooms');
     }
 }

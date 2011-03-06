@@ -4,6 +4,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link rel="stylesheet" href="<?= base_url() ?>css/style.css" type="text/css" media="screen" title="no title" />
 <!--<link rel="stylesheet" href="<?= base_url() ?>css/reset.css" type="text/css" media="screen" title="no title" />-->
+<link rel="shortcut icon" href="/favicon.ico" />
 <script type="text/javascript" src="<?= base_url() ?>scripts/jquery-1.5.min.js"></script>
 <title>UCC Summer Courses</title>
 </head>
@@ -19,8 +20,11 @@
                 <div class = "column" id = "header_login">
                 <? if (!isset($logged_in) OR $logged_in == FALSE): ?>
                 <?php
-                    $email_input = array('name' => 'email', 'id' => 'email', 'value' => set_value('email'));
-                    $pass_input = array('name' => 'pass', 'id' => 'pass');
+                    $email_input = array('name' => 'email',
+                                         'id' => 'email',
+                                         'value' => set_value('email', 'Email address'));
+                    $pass_input = array('name' => 'pass',
+                                        'id' => 'pass');
                 ?>
                     <?= form_open('login/validate_credentials') ?>
                     <?= form_input($email_input) ?>
@@ -28,6 +32,15 @@
                     <?= form_submit('submit', 'Login') ?>
                     <?= anchor('login/register', 'Register') ?>
                     <?= form_close() ?>
+
+                    <script type="text/javascript">
+                        $(document).ready(function(){
+                            $('#email').click(function(){
+                                $(this).val("");
+                            });
+                        });
+                    </script>
+
                 <? else: ?>
                 <?php
                 if($type == 'admin' &&
@@ -49,9 +62,9 @@
                 <? endif; ?>
                 </div>
                 <div class = "column" id = "header_logo">
-                <div class = "column" id = "header_logo_UCC"><img src="/images/static/UCC logo.gif" width="200" height="75" />
+                <div class = "column" id = "header_logo_UCC"><img src="/images/static/UCC logo.gif" width="200" height="75" alt="UCC Logo"/>
                 </div>
-                <div class = "column" id = "header_logo_2011"><img src="/images/static/sc2011.jpg" width="454" height="75" /></div>
+                <div class = "column" id = "header_logo_2011"><img src="/images/static/sc2011.jpg" width="454" height="75" alt="Summer Courses 2011"/></div>
                 </div>
             <!--End Header-->
             </div>
@@ -83,7 +96,7 @@
 					<p>Links</p>
                 	</div>
                     <div class = "row" id = "map">
-                    <P>ps:Google Map</p>
+                    <p>ps:Google Map</p>
                     </div>
                 </div>
 

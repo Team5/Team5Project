@@ -58,7 +58,7 @@ class Admin extends SC_Controller {
      *
      * Provides list of users and details about them
      */
-    function users()
+    function list_users()
     {
         if($this->logged_in && $this->email==ADMIN_EMAIL)
         {
@@ -82,7 +82,7 @@ class Admin extends SC_Controller {
      *
      * Provides list of all courses
      */
-    function courses()
+    function list_courses()
     {
         if($this->logged_in && $this->email==ADMIN_EMAIL)
         {
@@ -105,7 +105,7 @@ class Admin extends SC_Controller {
     /**
      * Provides list of all rooms
      */
-    function rooms()
+    function list_rooms()
     {
         if($this->logged_in && $this->email==ADMIN_EMAIL)
         {
@@ -179,7 +179,7 @@ class Admin extends SC_Controller {
     /**
      * course
      *
-     * User options, add, delete, update
+     * Course options, add, delete, update
      */
     function course()
     {
@@ -197,9 +197,9 @@ class Admin extends SC_Controller {
                     'description' => $this->input->post('description')
                 );
                 print_r($course);
-                if($this->input->post('course_id') != NULL)
+                if($this->input->post('cid') != NULL)
                 {
-                    $course['course_id'] = $this->input->post('course_id');
+                    $course['cid'] = $this->input->post('cid');
                 }
                 $task = $tasks[$this->input->post('task')];
 
@@ -209,11 +209,55 @@ class Admin extends SC_Controller {
                 }
                 else if($task == 'update')
                 {
-                    echo $this->courses_model->update($course['course_id'], $course);
+                    echo $this->courses_model->update($course['cid'], $course);
                 }
                 else if($task == 'delete')
                 {
-                    echo $this->courses_model->delete($course['course_id']);
+                    echo $this->courses_model->delete($course['cid']);
+                }
+            }
+        }
+        else
+        {
+            redirect('settings/admin');
+        }
+    }
+
+    /**
+     * room
+     *
+     * room options, add, delete, update
+     *
+     * @todo add room modifications
+     */
+    function room()
+    {
+        if($this->logged_in && $this->email==ADMIN_EMAIL)
+        {
+            if($this->input->post('submit') == 'fire')
+            {
+                $tasks = array('add', 'update', 'delete');
+                
+                $room = array(
+                );
+
+                if($this->input->post('rid') != NULL)
+                {
+                    $course['rid'] = $this->input->post('rid');
+                }
+                $task = $tasks[$this->input->post('task')];
+
+                if($task == 'add')
+                {
+                    echo $this->rooms_model->add($course) ? 'SUCCESS': 'FAIL';
+                }
+                else if($task == 'update')
+                {
+                    echo $this->rooms_model->update($course['cid'], $course);
+                }
+                else if($task == 'delete')
+                {
+                    echo $this->rooms_model->delete($course['cid']);
                 }
             }
         }

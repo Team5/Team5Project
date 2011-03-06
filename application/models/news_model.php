@@ -26,13 +26,13 @@ class News_model extends CI_Model {
      * Retrieves specific article and associated info
      *
      * @access public
-     * @param integer $article_id Article ID
+     * @param integer $aid Article ID
      * @return array
      *
      */
-    function get($article_id, $select="*") {
+    function get($aid, $select="*") {
         $this->db->select($select);
-        $this->db->where('article_id', $article_id);
+        $this->db->where('aid', $aid);
         $q = $this->db->get('news');
         if($q->num_rows() > 0) {
             return $q->result();
@@ -77,7 +77,7 @@ class News_model extends CI_Model {
      */
     function get_by_user($uid, $count=ROWS_PER_PAGE, $offset=0)
     {
-        $this->db->where('provider_id', $uid);
+        $this->db->where('pid', $uid);
         $q = $this->db->get('news', $count, $offset) ;
         if($q->num_rows() > 0)
         {
@@ -106,14 +106,14 @@ class News_model extends CI_Model {
      * Update an article
      *
      * @access public
-     * @param integer $article_id User ID of article to have info updated
+     * @param integer $aid User ID of article to have info updated
      * @param array $article_info Array filled with changed info
      * @return boolean
      * 
      */
-    function update($article_id, $article_info)
+    function update($aid, $article_info)
     {
-        $this->db->where('article_id', $article_id);
+        $this->db->where('aid', $aid);
         return $this->db->update('news', $article_info);
     }
     
@@ -121,13 +121,13 @@ class News_model extends CI_Model {
      * Delete an article from news table
      *
      * @access public
-     * @param integer $article_id ID of article to be deleted
+     * @param integer $aid ID of article to be deleted
      * @return boolean
      * 
      */
-    function delete($article_id)
+    function delete($aid)
     {
-        $this->db->where('article_id', $article_id);
+        $this->db->where('aid', $aid);
         return $this->db->delete('users');
     }
 }

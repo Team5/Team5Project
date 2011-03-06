@@ -60,17 +60,23 @@ class Courses extends SC_Controller {
      * @access public
      * @param string $area The area to
      * @deprecated This may be redundant due to the new layout of the default courses page
+     * @todo decide whether to completely get rid of this
      */
     function by_area($area="all")
     {
-        // Spit user back to 'courses' page if no $area selected
-        if($area=="all")
+        if($area == 'arts')
         {
+            $data['courses'][$area] = array('Arts, Celtic Studies and Social Sciences');
+        } elseif($area == 'business') {
+            $data['courses'][$area] = array('Business and Law');
+        } elseif($area == 'medicine') {
+            $data['courses'][$area] = array('Medicine and Health');
+        } elseif($area == 'science') {
+            $data['courses'][$area] = array('Science, Engineering and Food Science');
+        } else {
             redirect('courses');
         }
-        
-        $data['courses'][$area] = $this->courses_model->get_by_area($area);
-        
+        $data['courses'][$area][1] = $this->courses_model->get_by_area($area);
         $this->template_data['page_title'] = 'Courses in area: '.$area;
         $this->template_data['content']       = 'collection/courses';
         $this->template_data['content_data']  = $data;
@@ -81,15 +87,15 @@ class Courses extends SC_Controller {
     /**
      * by_id
      * 
-     * Provides information about $course_id
+     * Provides information about $cid
      *
      * @access public
-     * param integer $course_id the ID number of the requested course
+     * param integer $cid the ID number of the requested course
      */
-    function by_id($course_id)
+    function by_id($cid)
     {
         // Get the course details from the model
-        $course = $this->courses_model->get($course_id);
+        $course = $this->courses_model->get($cid);
         // If something of use was returned set up header_data and content_data
         if($course != NULL)
         {

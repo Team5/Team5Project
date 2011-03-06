@@ -44,8 +44,8 @@ class News extends SC_Controller {
         $data['news_articles'] = $this->news_model->get_all($config['per_page'], $this->uri->segment(3)) ;
         foreach($data['news_articles'] as $article)
         {
-            $provider_id = $article->provider_id;
-            $name = $this->users_model->get($provider_id, 'fname,sname');
+            $pid = $article->pid;
+            $name = $this->users_model->get($pid, 'fname,sname');
             $article->author = $name->sname . ', '. $name->fname;;
         }
 
@@ -78,8 +78,8 @@ class News extends SC_Controller {
         $data['news_articles'] = $this->news_model->get_by_user($uid, $config['per_page'], $this->uri->segment(4)) ;
         if(count($data['news_articles'])>0)
         {
-            $provider_id = $data['news_articles'][0]->provider_id;
-            $name = $this->users_model->get($provider_id, 'fname,sname');
+            $pid = $data['news_articles'][0]->pid;
+            $name = $this->users_model->get($pid, 'fname,sname');
             $name = $name->sname . ', '. $name->fname;
             foreach($data['news_articles'] as $article)
             {

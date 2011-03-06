@@ -39,6 +39,7 @@ class Enrollment_model extends CI_Model {
         // enrollment is the name of the table, $data is the information we are adding to the table
         $this->db->insert('enrollment', $data);
     }
+
     /**
      * enroll
      *
@@ -55,6 +56,7 @@ class Enrollment_model extends CI_Model {
         // Might let us know whether the entry exists or not
         return $this->db->update('enrollment' , $data);
     }
+
     /**
      * delete
      *
@@ -72,12 +74,12 @@ class Enrollment_model extends CI_Model {
             );
         $this->db->delete('enrollment' , $data);
     }
+
     /**
      * get_enrolled_users($cid)
      *
      * Get list of uids of users enrolled in course $cid
      *
-     * @todo implement get_enrolled_users($cid)
      * @param int $cid ID of course
      * @return array $uids List of user ids of users enrolled in this course
      */
@@ -96,12 +98,12 @@ class Enrollment_model extends CI_Model {
         }
         return $uids;
     }
+
     /**
      * get_enrolled_courses($uid)
      *
      * Get list of cids of courses user $uid is enrolled in
      *
-     * @todo implement get_enrolled_courses($uid)
      * @param int $uid ID of user
      * @return array $cids List of course ids of courses this user is enrolled in
      */
@@ -120,12 +122,12 @@ class Enrollment_model extends CI_Model {
         }
         return $cids;
     }
+
     /**
      * get_applied_users($cid)
      *
      * Get list of uids of users applied for course $cid
      *
-     * @todo implement get_applied_courses($uid)
      * @param int $cid ID of course
      * @return array $uids List of user ids applied for this course
      */
@@ -144,12 +146,12 @@ class Enrollment_model extends CI_Model {
         }
         return $uids;
     }
+
     /**
      * get_applied_courses($uid)
      *
      * Get list of cids of courses user $uid is enrolled in
      *
-     * @todo implement get_applied_courses($uid)
      * @param int $uid ID of user
      * @return array $cids List of course ids of courses this user has applied for
      */

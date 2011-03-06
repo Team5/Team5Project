@@ -19,6 +19,7 @@
  * @package     UCCSC
  * @subpackage	Controllers
  * @author	Team 5
+ * @todo Should this be called login or accounts? /login/logout looks funny...
  */
 class Login extends SC_Controller {
 
@@ -26,7 +27,7 @@ class Login extends SC_Controller {
      * Controller for login
      *
      * @access public
-     * 
+     * @todo Should login/accounts provide a page?
      */
     function index()
     {

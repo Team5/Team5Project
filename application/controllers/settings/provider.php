@@ -58,48 +58,59 @@ class Provider extends SC_Controller {
 
     function enroll()
     {
-        $enroll_users = $this->input->post('enroll_users');
-        $is_ajax = $this->input->post('ajax');
-print_r($_POST);
-        foreach($enroll_users as $en_user)
+        if($this->logged_in == True && $this->type == "provider")
         {
-            $user_prov = explode(',',$en_user);
-            $this->enrollment_model->enroll($user_prov[0], $user_prov[1]);
-        }
+            $enroll_users = $this->input->post('enroll_users');
+            $is_ajax = $this->input->post('ajax');
+    print_r($_POST);
+            foreach($enroll_users as $en_user)
+            {
+                $user_prov = explode(',',$en_user);
+                $this->enrollment_model->enroll($user_prov[0], $user_prov[1]);
+            }
 
-        if($is_ajax)
-        {
-            redirect('settings/provider');
-        }
-        else
-        {
-            redirect('settings/provider');
+            if($is_ajax)
+            {
+                redirect('settings/provider');
+            }
+            else
+            {
+                redirect('settings/provider');
+            }
+        } else {
+            // Possibly note unauthorised access
+            redirect('home');
         }
     }
 
     function add_course()
     {
-        $date = getDate();
-        $areas = array('arts', 'business', 'science', 'medicine');
+        if($this->logged_in == True && $this->type == "provider")
+        {
+            $date = getDate();
+            $areas = array('arts', 'business', 'science', 'medicine');
 
-        $sd = ($date['year']) - $this->input->post('start_year');
-        $sd .= '-'.($this->input->post('start_month')+1);
-        $sd .= '-'.($this->input->post('start_day')+1);
+            $sd = ($date['year']) - $this->input->post('start_year');
+            $sd .= '-'.($this->input->post('start_month')+1);
+            $sd .= '-'.($this->input->post('start_day')+1);
 
-        $ed = ($date['year']) - $this->input->post('end_year');
-        $ed .= '-'.($this->input->post('end_month')+1);
-        $ed .= '-'.($this->input->post('end_day')+1);
+            $ed = ($date['year']) - $this->input->post('end_year');
+            $ed .= '-'.($this->input->post('end_month')+1);
+            $ed .= '-'.($this->input->post('end_day')+1);
 
-        $course = array(
-            'title'       => $this->input->post('title'),
-            'pid'         => $this->uid,
-            'rid'         => $this->input->post('rid'),
-            'area'        => $areas[$this->input->post('area')],
-            'start_date'  => $sd,
-            'end_date'    => $ed,
-            'description' => $this->input->post('description')
-        );
-        print_r($course);
-        echo $this->courses_model->add($course) ? 'SUCCESS': 'FAIL';
+            $course = array(
+                'title'       => $this->input->post('title'),
+                'pid'         => $this->uid,
+                'rid'         => $this->input->post('rid'),
+                'area'        => $areas[$this->input->post('area')],
+                'start_date'  => $sd,
+                'end_date'    => $ed,
+                'description' => $this->input->post('description')
+            );
+
+            echo $this->courses_model->add($course) ? 'SUCCESS': 'FAIL';
+        } else {
+            redirect('home');
+        }
     }
 }

@@ -2,14 +2,13 @@
 /* CSS Document */
 
 /* General Setting*/
-
 .centered{
-	text-align 			: center;
+	text-align                      : center;
 	}
 
 .sidePad{
-	padding-left		: 2px;
-	padding-right		: 2px;
+	padding-left                    : 2px;
+	padding-right                   : 2px;
 	}
 	
 .column{
@@ -22,16 +21,20 @@
 		
 #mainContainer{
 	background			: url(/images/static/background1.jpg);
-	top					: 6px;
-	width				: 930px;
+	top				: 6px;
+	width                           : 930px;
+        margin-left                     : auto;
+	margin-right                    : auto;
+
+        border-radius: 5px;
 	}	
 
 /* Header */
 
 #header{
-	height:				: 10px;
+	height				: 10px;
 	margin-top			: 6px;
-	margin-buttom		: 6px;
+	margin-bottom                   : 6px;
 	}
 	
 p1{
@@ -39,12 +42,16 @@ p1{
 	font-size			: 9px;
 	}
 
+#header_login input[type=text], #header_login input[type=password] {
+    width : 100px;
+}
+
 #header_login{
 	text-align			: left;
 	width				: 926px;
 	height				: 20px;				
 	padding-top			: 4px;
-	padding-bottom		: 4px;
+	padding-bottom                  : 4px;
 	border-top			: 1px solid #FFF;
 	}
 	
@@ -53,7 +60,7 @@ p1{
 	text-align			: right;
 	width				: 926px;
 	padding-top			: 4px;
-	padding-bottom		: 4px;	
+	padding-bottom                  : 4px;
 	}
 	
 #header_logo_UCC{
@@ -73,17 +80,60 @@ p1{
 #pageContent{
 	width				: 926px;
 	}
-	
+
+#pageContent table{
+        width : 750px;
+        }
+
+#pageContent table{
+        border-collapse                 : collapse;
+        border-top                      : 2px solid white;
+        }
+
+#accordion{
+        width : 750px;
+        }
+
+.area_title{
+        margin :0px;
+        text-align: left;
+        font-weight: bold;
+    	background-image: url(/images/static/quicklinksplus.png);
+	background-repeat:no-repeat;
+        background-position: right;
+	width:750px;
+	cursor:pointer;
+        border-top                      : 2px solid white;
+        }
+
+#pageContent table td{
+        border-bottom                   : 1px solid white;
+        border-top                      : 1px solid white;
+        }
+
+.course_box{
+        max-height: 200px;
+        overflow : scroll;
+}
+
+.filled{
+        color                           : gray;
+        }
+
 #menuBar{
 	text-align			: right;
 	padding-top			: 2px;
-	padding-bottom		: 2px;
-	border-bottom		: 1px solid #C9F;
+	padding-bottom                  : 2px;
+	border-bottom                   : 1px solid #C9F;
 	}
 
+#menuBar #selected {
+        font-weight                     : bold;
+        }
+
 #menuBar ul,#menuBar li {
-        text-decoration: none;
-        display : inline;
+        text-decoration                 : none;
+        display                         : inline;
         }
 	
 #side_info{
@@ -110,7 +160,7 @@ p1{
 
 #footer{
 	margin-top			: 4px;
-	padding-left		: 4px;
+	padding-left                    : 4px;
 	bottom				: 6px;
 	width				: 926px;
 	border-top			: 1px solid #C9F;
