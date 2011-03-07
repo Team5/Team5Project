@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link rel="stylesheet" href="<?= base_url() ?>css/style.css" type="text/css" media="screen" title="no title" />
-<!--<link rel="stylesheet" href="<?= base_url() ?>css/reset.css" type="text/css" media="screen" title="no title" />-->
+<link rel="stylesheet" href="<?= base_url() ?>css/reset.css" type="text/css" media="screen" title="no title" />
 <link rel="shortcut icon" href="/favicon.ico" />
 <script type="text/javascript" src="<?= base_url() ?>scripts/jquery-1.5.min.js"></script>
 <title>UCC Summer Courses</title>
@@ -37,6 +37,12 @@
                         $(document).ready(function(){
                             $('#email').click(function(){
                                 $(this).val("");
+                            });
+                            $('#email').change(function(){
+                                $(this).addClass();
+                                if($(this).val()==""){
+                                    $(this).val('Email address');
+                                }
                             });
                         });
                     </script>

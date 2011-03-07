@@ -60,7 +60,7 @@ $courses = $courses_in_area[1];
                                  $course->cid,
                                  FALSE)?></td>
             <? endif;?>
-            <th rowspan="3"><?=$course->title?></th>
+            <th rowspan="3"><?= anchor('/courses/by_id/'.$course->cid, $course->title)?></th>
             <td rowspan="3"><?=$course->description?></td>
                 <td><?=$course->start_date?></td></tr>
             <tr<?=($filled)?' class="filled"':''?>><td><?=$course->end_date?></td></tr>

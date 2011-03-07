@@ -81,9 +81,11 @@
                 	<div class = "column" id = "side_info_left">
                     	<div class = "row" id = "calendar"><img src="/images/static/calendar.jpg" width="150" height="150" /></div>
                         <div class = "row" id = "dates">
-                        <li>Start Date June 6</li> 
-                        <li>Opening Weekend : June 4 - 5</li>
-                        <li>End Date August 15</li>
+                        <ul>
+                            <li>Start Date June 6</li>
+                            <li>Opening Weekend : June 4 - 5</li>
+                            <li>End Date August 15</li>
+                        </ul>
                         </div>
                     </div>
                     <div class = "column" id = "side_info_right">
