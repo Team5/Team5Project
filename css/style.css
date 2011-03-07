@@ -43,6 +43,7 @@ p1{
 	}
 
 #header_login input[type=text], #header_login input[type=password] {
+    color : grey;
     width : 100px;
 }
 
@@ -136,13 +137,17 @@ p1{
 	
 #side_info{
 	margin-top			: 4px;
-	margin-bottom		: 4px;
+	margin-bottom                   : 4px;
 	width				: 926px;
 	}
 	
 #side_info_left{
 	width				: 170px;
 	}
+
+#side_info_left li{
+        list-style: url;
+}
 	
 #calendar{
 	padding-bottom		: 4px;
