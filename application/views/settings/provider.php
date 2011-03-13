@@ -12,13 +12,14 @@
 <h3><?=$course->title?></h3>
 <?=form_open('settings/provider/enroll')?>
 <? if(count($course->applied) > 0): ?>
-<a href="#" onclick="$('#Applied_<?=$course->cid?>').slideToggle('slow')" colspan="3">List Applied</a>
+<a href="#" onclick="$('#Applied_<?=$course->cid?>').slideToggle('slow')">List Applied</a>
 <table id="Applied_<?=$course->cid?>">
     <thead>
         <tr>
             <th scope="col">Name</th>
             <th scope="col">Email</th>
             <th scope="col">Enroll?</th>
+            <th scope="col">Reject?</th>
         </tr>
     </thead>
     <tbody>
@@ -29,6 +30,9 @@
         <td><?=form_checkbox('enroll_users[]',
                              $user->uid.",".$course->cid,
                              False)?></td>
+        <td><?=form_checkbox('reject_users[]',
+                             $user->uid.",".$course->cid,
+                             False)?></td>
     </tr>
     <? endforeach;?>
     </tbody>
@@ -36,12 +40,13 @@
 <? endif ?>
 
 <? if(count($course->enrolled) > 0): ?>
-<a href="#" onclick="$('#Enrolled_<?=$course->cid?>').slideToggle('slow')" colspan="2">List Enrolled</a>
+<a href="#" onclick="$('#Enrolled_<?=$course->cid?>').slideToggle('slow')">List Enrolled</a>
 <table id="Enrolled_<?=$course->cid?>">
     <thead>
         <tr>
             <th scope="col">Name</th>
             <th scope="col">Email</th>
+            <th scope="col">Reject</th>
         </tr>
     </thead>
     <tbody>
@@ -49,6 +54,9 @@
     <tr>
         <td><?=$user->fname." ".$user->sname?></td>
         <td><?=$user->email?></td>
+        <td><?=form_checkbox('reject_users[]',
+                             $user->uid.",".$course->cid,
+                             False)?></td>
     </tr>
     <? endforeach;?>
     </tbody>

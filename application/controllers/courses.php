@@ -106,13 +106,20 @@ class Courses extends SC_Controller {
         $this->load->view('template', $this->template_data);
     }
 
+    /**
+     * apply
+     *
+     * Apply this user for list of courses $_POST['selected_courses']
+     *
+     * @access public
+     */
     function apply()
     {
-        if($this->input->post('Submit'))
+        if($this->type == 'user' && $this->input->post('Submit'))
         {
             foreach($this->input->post('selected_courses') as $cid)
             {
-                if($this->courses_model->get($cid))
+                if($this->courses_model->increment_enrollment_count($cid))
                 {
                     $this->enrollment_model->apply($this->uid, $cid);
                 }

@@ -110,6 +110,10 @@ p1{
         border-top                      : 1px solid white;
         }
 
+#pageContent input{
+        display: block;
+}
+
 .course_box{
         max-height: 200px;
         overflow : scroll;
