@@ -2,8 +2,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<link rel="stylesheet" href="<?= base_url() ?>css/style.css" type="text/css" media="screen" title="no title" />
 <link rel="stylesheet" href="<?= base_url() ?>css/reset.css" type="text/css" media="screen" title="no title" />
+<link rel="stylesheet" href="<?= base_url() ?>css/style.css" type="text/css" media="screen" title="no title" />
+
 <link rel="shortcut icon" href="/favicon.ico" />
 <script type="text/javascript" src="<?= base_url() ?>scripts/jquery-1.5.min.js"></script>
 <title>UCC Summer Courses</title>
@@ -85,7 +86,7 @@
                 'News'    => '/news',
                 'About'   => '/home/about',
                 'Help'    => '/home/help',
-                'Contact' => '/contact'
+                'Contact' => '/home/contact'
             );
             ?>
             <? foreach ($menuitems as $title => $url): ?>
@@ -98,12 +99,14 @@
             </div>
             <div class = "row" id = "side_info">
                 <div class = "column" id = "side_info_left">
-                	<div class = "row" id = "links">
-					<p>Links</p>
-                	</div>
-                    <div class = "row" id = "map">
-                    <p>ps:Google Map</p>
-                    </div>
+                	<div class = "row" id = "calendar"><img src="/images/static/calendar.jpg" width="150" height="150" alt="Calendar"/></div>
+                        <div class = "row" id = "dates">
+                        <ul>
+                            <li>Start Date June 6</li>
+                            <li>Opening Weekend : June 4 - 5</li>
+                            <li>End Date August 15</li>
+                        </ul>
+                        </div>
                 </div>
 
                 <div class = "column" id = "side_info_right">

@@ -2,10 +2,6 @@
 /* CSS Document */
 
 /* General Setting*/
-.centered{
-	text-align                      : center;
-	}
-
 .sidePad{
 	padding-left                    : 2px;
 	padding-right                   : 2px;
@@ -25,7 +21,6 @@
 	width                           : 930px;
         margin-left                     : auto;
 	margin-right                    : auto;
-
         border-radius: 5px;
 	}	
 
@@ -80,15 +75,18 @@ p1{
 
 #pageContent{
 	width				: 926px;
+        height                          : 550px;
 	}
 
 #pageContent table{
-        width : 750px;
+        width : 730px;
         border-collapse                 : collapse;
         border-top                      : 2px solid white;
         }
 
 #accordion{
+        max-height: 450px;
+        overflow : auto;
         width : 750px;
         }
 
@@ -99,25 +97,10 @@ p1{
     	background-image: url(/images/static/quicklinksplus.png);
 	background-repeat:no-repeat;
         background-position: right;
-	width:750px;
+	width:730px;
 	cursor:pointer;
-        /*border-top                      : 2px solid grey;*/
         border-bottom                      : 2px solid grey;
         }
-
-#pageContent table td{
-        border-bottom                   : 1px solid white;
-        border-top                      : 1px solid white;
-        }
-
-#pageContent input{
-        display: block;
-}
-
-.course_box{
-        max-height: 200px;
-        overflow : scroll;
-}
 
 .filled{
         color                           : gray;

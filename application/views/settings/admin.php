@@ -7,7 +7,6 @@
   * be paginated with nice ajax for loading next lot of entries...otherwise 2
   * minutes to load the page... Search wouldn't hurt
   *
-  * @todo Should fit it's description a bit better
   * @param Array $users Array of users to make update, delete easier
   * @param Array $courses Array of courses to make update, delete easier
   * @param Array $enrolled Array of enrollment details to make update, delete easier
