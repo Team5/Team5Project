@@ -2,9 +2,17 @@
 /* CSS Document */
 
 /* General Setting*/
+
+body{
+	background:url(../images/static/bg.jpg);
+	background-repeat	: no-repeat;
+	}
+
+.centered{
+	text-align 			: center;
+	}
+
 .sidePad{
-	padding-left                    : 2px;
-	padding-right                   : 2px;
 	}
 	
 .column{
@@ -16,56 +24,47 @@
 	}
 		
 #mainContainer{
-	background			: url(/images/static/background1.jpg);
-	top				: 6px;
-	width                           : 930px;
-        margin-left                     : auto;
-	margin-right                    : auto;
-        border-radius: 5px;
+	margin-left			: auto;
+	margin-right		: auto;
+	border				: solid 2px #999;
+	top					: 6px;
+	width				: 930px;
+	background-color	: #FFF;
 	}	
 
 /* Header */
 
 #header{
-	height				: 10px;
-	margin-top			: 6px;
-	margin-bottom                   : 6px;
 	}
 	
-p1{
-	text-align			: left;
-	font-size			: 9px;
-	}
-
-#header_login input[type=text], #header_login input[type=password] {
-    color : grey;
-    width : 100px;
-}
-
 #header_login{
-	text-align			: left;
-	width				: 926px;
-	height				: 20px;				
-	padding-top			: 4px;
-	padding-bottom                  : 4px;
-	border-top			: 1px solid #FFF;
+	background-color	: #666;
+	color				: #FFF;
+	padding-right		: 10px;
+	text-align			: right;
+	width				: 920px;
 	}
+
+#header_login a{
+	color				: #FFF;
+	text-decoration		: none;
+}
 	
 #header_logo{
 	background			: #FFF;
-	text-align			: right;
-	width				: 926px;
+	text-align			: center;
+	width				: 930px;
 	padding-top			: 4px;
-	padding-bottom                  : 4px;
+	padding-bottom		: 4px;
+	height				: 75px;	
 	}
 	
 #header_logo_UCC{
-	width				: 204px;
+	width				: 304px;
 	height				: 75px;
 	}
 	
 #header_logo_2011{
-	background			: url(/images/static/sc2011_logo.jpg);
 	margin-left			: 6px;
 	width				: 620px;
 	height				: 75px;
@@ -74,84 +73,178 @@ p1{
 /* PageContent */
 
 #pageContent{
-	width				: 926px;
-        height                          : 550px;
+	width				: 930px;
 	}
-
-#pageContent table{
-        width : 730px;
-        border-collapse                 : collapse;
-        border-top                      : 2px solid white;
-        }
-
-#accordion{
-        max-height: 450px;
-        overflow : auto;
-        width : 750px;
-        }
-
-.area_title{
-        margin :0px;
-        text-align: left;
-        font-weight: bold;
-    	background-image: url(/images/static/quicklinksplus.png);
-	background-repeat:no-repeat;
-        background-position: right;
-	width:730px;
-	cursor:pointer;
-        border-bottom                      : 2px solid grey;
-        }
-
-.filled{
-        color                           : gray;
-        }
-
+	
 #menuBar{
+	background-color	: #666;
+	color				: #FFF;
 	text-align			: right;
 	padding-top			: 2px;
-	padding-bottom                  : 2px;
-	border-bottom                   : 1px solid #C9F;
-	}
+	padding-bottom		: 2px;
+	padding-right		: 10px;
+	border-bottom		: 1px solid #C9F;
+}
+
+#menuBar a {
+	color 				: #FFF;
+	text-decoration 	: none; 
+}
+	
+#menuBar li, #menuBar ul{
+    display 			: inline;
+	text-decoration 	: none;
+}
 
 #menuBar #selected {
-        font-weight                     : bold;
-        }
+	font-weight 		: bold;
+}
 
-#menuBar ul,#menuBar li {
-        text-decoration                 : none;
-        display                         : inline;
-        }
-	
+
+
 #side_info{
-	margin-top			: 4px;
-	margin-bottom                   : 4px;
-	width				: 926px;
+	width				: 930px;
 	}
 	
 #side_info_left{
-	width				: 170px;
+	padding-top			: 20px;
+	padding-bottom		: 20px;
+	background-color	: #CCC;
+	width				: 220px;
 	}
-
-#side_info_left li{
-        list-style: url;
+	
+#about_left_links{
+	float				: left;
+	padding-top			: 20px;
 }
 	
-#calendar{
+#about_left_links li{
 	padding-bottom		: 4px;
-	border-bottom		: 1px solid #C9F;
+	text-align			: left;
+	text-decoration 	: none;	
+	list-style			: none;
+	list-style-position : outside;
+	border-bottom		: 1px solid #333;
+}
+
+#about_left_links a {
+	color				: #333;
+	text-decoration 	: none;
+}
+
+#about_left_links #left_selected {
+	font-weight 		: bold;
+}
+
+#about_title{
+	padding-left		: 40px;
+	width				: 460px;
+	float				: left;
+	text-align			: left;
+	font-weight			: bold;
+	padding-top			: 4px;
+	border-bottom		: 1px solid #AAA;
+}
+		
+#maps{
+	margin-top			: 6px;
+	margin-left			: auto;
+	margin-right		: auto;
+	margin-bottom		: 6px;
+	width				: 180px;
+	border				: 1px solid #999;
 	}
 	
+#label1{
+	color				: #FFF;
+	width				: 180px;
+	background-color	: #777;
+	}
+
+#links{
+	margin-left			: auto;
+	margin-right		: auto;
+	margin-bottom		: 6px;
+	width				: 180px;
+	background-color	: #DDD;	
+	font-size			: 13px;
+	}
+
+#label2{	
+	border-bottom		: 1px solid #777;
+	}
+
+#links_1{
+	text-align			: left;
+	}
+
+#campus{
+	}
+	
+#side_info_mid{
+	width				: 560px;
+	background-color	: #F9F5F9;
+	}
+	
+h2{
+	color				: #444;
+	padding-left		: 20px;
+	text-align			: left;
+	border-bottom		: 1px solid #333;
+}
+
+h3 {
+	padding-left		: 30px;
+	text-align			: left;
+}
+
+h3 a{
+	color				: #444;
+	text-decoration 	: none;
+}
+	
+#left_imgs{
+	display 			: inline;
+	float				: left;
+	text-align			: left;
+	width				: 250px;
+	padding				: 20px;
+}
+
+#right_text{
+	display 			: inline;
+	width				: 310px;
+	padding				: 20px;
+}
+
 #side_info_right{
-	width				: 628px;
-	border-left			: 1px solid #C9F;
+	width				: 150px;
 	}
-	
+
+#calendar{
+	width				: 150px;
+	height				: 150px;
+	}
+
 /* Footer */
 
 #footer{
-	margin-top			: 4px;
-	padding-left                    : 4px;
-	bottom				: 6px;
-	width				: 926px;
-	border-top			: 1px solid #C9F;
+	bottom				: 4px;
+	width				: 930px;
+	border-top			: 1px solid #999;
+	}
+	
+#copyright{
+	}
+	
+#cp_left{
+	font-size			: 11px;
+	width				: 230px;
+	}
+
+#cp_right{
+	float				: right;
+	width				: 700px;
+	font-size			: 11px;
+	text-align			: right;
 	}

@@ -46,7 +46,7 @@ class News extends SC_Controller {
         {
             $pid = $article->pid;
             $name = $this->users_model->get($pid, 'fname,sname');
-            $article->author = $name->sname . ', '. $name->fname;;
+            $article->author = $name->sname . ', '. $name->fname;
         }
 
         $this->template_data['content']      = 'collection/articles';

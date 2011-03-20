@@ -20,6 +20,7 @@
  * @subpackage	Models
  * @author	Team 5
  *
+ * @todo Get rid of enrollment related parts
  */
 class Courses_model extends CI_Model {
     
@@ -164,37 +165,5 @@ class Courses_model extends CI_Model {
     function delete($cid) {
         $this->db->where('cid', $cid);
         return $this->db->delete('courses');
-    }
-
-    /**
-     * increment_enrolled_count
-     *
-     * @access public
-     * @param integer $cid
-     * @return boolean
-     *
-     */
-    function increment_enrolled_count($cid)
-    {
-        $course = $this->get($cid);
-        $data = array('enrolled_count' => $course->enrolled_count + 1);
-        $this->db->where('cid', $cid);
-        return $this->db->update('courses', $data);
-    }
-
-    /**
-     * deincrement_enrolled_count
-     *
-     * @access public
-     * @param integer $cid
-     * @return boolean
-     *
-     */
-    function deincrement_enrolled_count($cid)
-    {
-        $course = $this->get($cid);
-        $data = array('enrolled_count' => $course->enrolled_count - 1);
-        $this->db->where('cid', $cid);
-        return $this->db->update('courses', $data);
     }
 }

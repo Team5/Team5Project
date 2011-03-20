@@ -20,6 +20,7 @@
  * @subpackage	Models
  * @author	Team 5
  *
+ * @todo Get rid of enrollment related parts
  */
 class Users_model extends CI_Model {
 
@@ -67,6 +68,42 @@ class Users_model extends CI_Model {
         else
         {
             return NULL;
+        }
+    }
+    
+    /**
+     * apply_for_course
+     *
+     * Update user information for applying for a course
+     *
+     * @access public
+     * @param integer $uid User ID
+     * @param integer $cid Course ID
+     * @return boolean Success?
+     */
+    function apply_for_course($uid, $cid)
+    {
+        $this->db->select('applied');
+        $this->db->where('uid', $uid);
+        $q = $this->db->get('users');
+        if($q->num_rows() > 0)
+        {
+            $tmp = $q->result();
+            $tmp = $tmp[0];
+            $cids = explode(',', $tmp->applied);
+            $cids[] = $cid;
+            sort($cids);
+            
+            $data = array(
+                'applied' => implode(',',$cids)
+            );
+            
+            $this->db->where('uid', $uid);
+            $this->db->update('users', $data);
+        }
+        else
+        {
+            return FALSE;
         }
     }
     

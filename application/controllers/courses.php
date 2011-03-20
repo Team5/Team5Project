@@ -53,6 +53,38 @@ class Courses extends SC_Controller {
     }
     
     /**
+     * by_area
+     *
+     * List courses from a specific area
+     * 
+     * @access public
+     * @param string $area The area to
+     * @deprecated This may be redundant due to the new layout of the default courses page
+     * @todo decide whether to completely get rid of this
+     */
+    function by_area($area="all")
+    {
+        if($area == 'arts')
+        {
+            $data['courses'][$area] = array('Arts, Celtic Studies and Social Sciences');
+        } elseif($area == 'business') {
+            $data['courses'][$area] = array('Business and Law');
+        } elseif($area == 'medicine') {
+            $data['courses'][$area] = array('Medicine and Health');
+        } elseif($area == 'science') {
+            $data['courses'][$area] = array('Science, Engineering and Food Science');
+        } else {
+            redirect('courses');
+        }
+        $data['courses'][$area][1] = $this->courses_model->get_by_area($area);
+        $this->template_data['page_title'] = 'Courses in area: '.$area;
+        $this->template_data['content']       = 'collection/courses';
+        $this->template_data['content_data']  = $data;
+
+        $this->load->view('template', $this->template_data);
+    }
+    
+    /**
      * by_id
      * 
      * Provides information about $cid
@@ -74,20 +106,13 @@ class Courses extends SC_Controller {
         $this->load->view('template', $this->template_data);
     }
 
-    /**
-     * apply
-     *
-     * Apply this user for list of courses $_POST['selected_courses']
-     *
-     * @access public
-     */
     function apply()
     {
-        if($this->type == 'user' && $this->input->post('Submit'))
+        if($this->input->post('Submit'))
         {
             foreach($this->input->post('selected_courses') as $cid)
             {
-                if($this->courses_model->increment_enrollment_count($cid))
+                if($this->courses_model->get($cid))
                 {
                     $this->enrollment_model->apply($this->uid, $cid);
                 }

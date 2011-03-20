@@ -19,6 +19,7 @@
  * @package     UCCSC
  * @subpackage	Controllers
  * @author	Team 5
+ * @todo If we don't want a contact form we can have contact page served from here.
  */
 class Home extends SC_Controller {
 
@@ -31,42 +32,7 @@ class Home extends SC_Controller {
     {
         $this->template_data['page_title'] = 'Welcome';
         $this->template_data['choice']     = 'Home';
-        $this->load->view('template', $this->template_data);
-    }
-    
-    /**
-     * About page
-     *
-     * @access public
-     */
-    function about()
-    {
-        $this->template_data['page_title'] = 'About Us';
-        $this->template_data['choice']     = 'About';
-        $this->load->view('template', $this->template_data);
-    }
-
-    /**
-     * Help page
-     *
-     * @access public
-     */    
-    function help()
-    {
-        $this->template_data['page_title'] = 'Help';
-        $this->template_data['choice']     = 'Help';
-        $this->load->view('template', $this->template_data);
-    }
-
-    /**
-     * Contact page
-     *
-     * @access public
-     */
-    function contact()
-    {
-        $this->template_data['page_title'] = 'Contact Us';
-        $this->template_data['choice']     = 'Contact';
+		$this->template_data['content']     = 'static/home';
         $this->load->view('template', $this->template_data);
     }
 }
