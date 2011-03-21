@@ -165,7 +165,7 @@ class Enrollment_model extends CI_Model {
         {
             foreach($query->result() as $row)
             {
-                $uids[] = $row->cid;
+                $cids[] = $row->cid;
             }
         }
         return $cids;

@@ -10,26 +10,28 @@
   */
 ?>
 <? if(isset($course)): ?>
+<h2><?=$course->title?></h2>
+<?=anchor('courses/apply/', 'Apply for this course')?>
 <table>
     <tr>
-        <th>ShortName</th>
-        <th>Area</th>
-        <th>Description</th>
-        <th>StartDate</th>
-        <th>EndDate</th>
-        <th>Price</th>
-    </tr>
-
-    <h2><?=$course->title?></h2>
-    <tr class="odd_row">
-        <td><?=$course->title?></td>
-        <td><?=anchor('courses/by_area/'.$course->area, $course->area)?></td>
-        <td><?=str_replace("\n","<br/>", $course->description)?></td>
+        <th>Start Date</th>
         <td><?=$course->start_date?></td>
+    </tr>
+    <tr>
+        <th>End Date</th>
         <td><?=$course->end_date?></td>
+    </tr>
+    <tr>
+        <th>Places</th>
+        <td><?=($course->enrolled_max - $course->enrolled_count)?></td>
+    </tr>
+    <tr>
+        <th>Price</th>
         <td id="price"></td>
     </tr>
 </table>
+<?=str_replace("\n","<br/>", $course->description)?>
+
 <? else:?>
 <h2>No course with that id</h2>
 <? endif;?>

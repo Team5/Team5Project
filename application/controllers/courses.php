@@ -41,7 +41,8 @@ class Courses extends SC_Controller {
                                 $this->courses_model->get_by_area('science'))
         );
         $data['type'] = $this->type;
-
+        $data['applied'] = $this->enrollment_model->get_applied_courses($this->uid);
+        $data['applied'] += $this->enrollment_model->get_enrolled_courses($this->uid);
         $this->template_data['page_title'] = 'Courses';
         $this->template_data['choice'] = 'Courses';
 
@@ -76,6 +77,7 @@ class Courses extends SC_Controller {
         } else {
             redirect('courses');
         }
+        $data['applied'] = $this->enrollment_model->get_applied_courses($this->uid);
         $data['courses'][$area][1] = $this->courses_model->get_by_area($area);
         $this->template_data['page_title'] = 'Courses in area: '.$area;
         $this->template_data['content']       = 'collection/courses';
@@ -106,7 +108,7 @@ class Courses extends SC_Controller {
         $this->load->view('template', $this->template_data);
     }
 
-    function apply()
+    function apply_form()
     {
         if($this->input->post('Submit'))
         {
@@ -117,6 +119,16 @@ class Courses extends SC_Controller {
                     $this->enrollment_model->apply($this->uid, $cid);
                 }
             }
+        } else {
+            redirect('home');
+        }
+    }
+
+    function apply($cid=0)
+    {
+        if($cid != 0 && $this->logged_in && $this->type == 'User')
+        {
+            $this->enrollment_model->apply($this->uid, $cid);
         } else {
             redirect('home');
         }

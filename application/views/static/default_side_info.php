@@ -3,12 +3,12 @@
 		Download the Campus Maps
 	</div>
 	<div id = "campus">
-		<img src="<?=base_url()?>images/static/map4.jpg" width = "180">
+		<img src="<?=base_url()?>images/static/map4.jpg" width = "180" alt="map4" />
 	</div>
 </div>
 <div id = "links">
 	<div id = "label2">
-		Books & Merchandise
+		Books &amp; Merchandise
 	</div>
 	<div id = "links_1">
 		<ul>

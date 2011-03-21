@@ -113,4 +113,29 @@ class Provider extends SC_Controller {
             redirect('home');
         }
     }
+
+    function email_course()
+    {
+        if($this->logged_in && $this->type == 'Provider')
+        {
+            $this->load->library('email');
+            $this->email->set_newline("\r\n");
+
+            $this->email->from($this->email, $this->name);
+            $this->email->to();
+
+            $this->email->subject(' CodeIgniter Rocks Socks ');
+            $this->email->message('Hello World');
+
+
+            if (!$this->email->send())
+            {
+                show_error($this->email->print_debugger());
+            } else {
+                echo 'Your e-mail has been sent!';
+            }
+        } else {
+            redirect('home');
+        }
+    }
 }

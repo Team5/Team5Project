@@ -14,8 +14,11 @@
   *
   */
 ?>
+<?=form_open('courses/apply_form')?>
 
-<?=form_open('courses/apply')?>
+<? if($type == 'user'): ?>
+    <?=form_submit('Submit', 'Apply for selected courses')?>
+<? endif;?>
 <div id="accordion">
 <? foreach($courses as $area => $courses_in_area):?>
 <?php
@@ -27,55 +30,56 @@ $courses = $courses_in_area[1];
     <h3 class="area_title" > <!--onclick="$('#<?=$area?>').slideToggle('slow');"-->
         <a href="#"><?=$title?></a>
     </h3>
-    <div>
-    <table class="course_box" id="<?=$area?>">
-        <thead>
-            <tr>
-                <? if($type == 'user'):?>
-                <th>Pick</th>
-                <? endif;?>
-                <th>Name</th>
-                <th>Description</th>
-                <th>Details</th>
-            </tr>
-        </thead>
-        <tbody>
+    <div class="course_box" id="<?=$area?>">
+        <p><a href="#" class="hide_irrelevant">Click here to show/hide incompatible choices</a></p>
         <? if(count($courses)>0): $odd=0; foreach($courses as $course):?>
         <?php
-            $filled = 0>=($course->enrolled_max - $course->enrolled_count);
-
+            $filled  = 0>=($course->enrolled_max - $course->enrolled_count);
+            $already_applied = in_array($course->cid, $applied);
         ?>
-            <tr<?
-              if ($odd^=1 OR $filled)
+            <div <?
+              if ($odd^=1 OR $filled OR $already_applied)
               {
                   echo ' class="';
-                  if($odd)    echo " odd_row";
+                  if($odd)    echo "odd_row";
                   if($filled) echo " filled";
+                  if($already_applied) echo " applied";
                   echo '"';
               }
               ?>>
-            <? if($type == 'user'):?>
-            <td rowspan="3"><?=form_checkbox('selected_courses[]',
-                                 $course->cid,
-                                 FALSE)?></td>
+                
+            <h3>
+                <?=anchor('courses/by_id/'.$course->cid, $course->title)?>
+            </h3>
+            <? if($already_applied == True):?>
+                <p>You have already applied to this course.</p>
+            <? elseif($filled == True): ?>
+                <p>This course is booked out, sorry.</p>
+            <? endif; ?>
+            <? if( ! $filled && ! $already_applied && $type == 'user'):?>
+                <span class="apply_now">
+                    <?=anchor('/courses/apply/'.$course->cid, 'Apply for this course')?>
+                </span>
+                <span class="add_to_list">
+                    Add to course list
+                    <?=form_checkbox('selected_courses[]',
+                                     $course->cid,
+                                     FALSE)?>
+                </span>
             <? endif;?>
-            <th rowspan="3"><?=$course->title?></th>
-            <td rowspan="3"><?=$course->description?></td>
-                <td><?=$course->start_date?></td></tr>
-            <tr<?=($filled)?' class="filled"':''?>><td><?=$course->end_date?></td></tr>
-            <tr<?=($filled)?' class="filled"':''?>><td><?=$course->enrolled_max - $course->enrolled_count?></td></tr>
+            <ul>
+                <li><?='Start Date: '.$course->start_date?></li>
+                <li><?='End Date: '.$course->end_date?></li>
+                <li><?='Places: '.($course->enrolled_max - $course->enrolled_count)?></li>
+            </ul>
+            <p><?=$course->short_description?></p>
+            </div>
         <? endforeach; else:?>
-           <tr><td colspan="all">Nothing here</td></tr>
+            <p>Nothing here</p>
         <? endif;?>
-        </tbody>
-    </table>
     </div>
 <? endif;?>
 <? endforeach;?>
-    
-<? if($type == 'user'): ?>
-    <?=form_submit('Submit', 'Apply')?>
-<? endif;?>
 </div>
 <?=form_close()?>
 
@@ -85,5 +89,11 @@ $(document).ready(function(){
             $(this).next().slideToggle('slow');
             return false;
     }).next().hide();
+
+    $('.filled, .applied').hide();
+
+    $('.hide_irrelevant').click(function(){
+        $('.filled, .applied').slideToggle();
+    });
 });
 </script>
